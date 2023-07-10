@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">OneTouch</string>
+    <string name="unKnownError">"알 수 없는 오류가 발생했습니다. 잠시후 다시 시도해주시길 바랍니다.</string>
+    <string name="원터치보드판">원터치 보드판</string>
+    <string name="촬영히스토리">촬영 history</string>
+    <string name="서식입력">보드판 서식입력</string>
+    <string name="서식추가">+버튼을 눌러 서식을 추가</string>
+    <string name="서식없음">저장된 서식이 없습니다</string>
+    <string name="촬영">촬영</string>
+    <string name="tableTitle">서식명을 입력해주세요.</string>
+    <string name="save">저장되었습니다.</string>
+    <string name="tableDelete">서식을 삭제하시겠습니까?</string>
+    <string name="서식삭제">서식 삭제</string>
+</resources>
