@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetTable @Inject constructor(
     private val repository: Repository
 ){
-    suspend operator fun invoke(id: Long): Table {
+    suspend operator fun invoke(id: Int): Table {
         return repository.getTable(id)
     }
 }

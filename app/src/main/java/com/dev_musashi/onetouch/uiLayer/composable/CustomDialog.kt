@@ -16,19 +16,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.dev_musashi.onetouch.R.string as AppText
 
 @Composable
 fun CustomDialog(
     modifier: Modifier = Modifier,
-    title: Int,
+    title: String,
     content: @Composable () -> Unit,
-    onDismissRequest: () -> Unit,
-    onAcceptRequest: () -> Unit,
+    cancel: () -> Unit,
+    okay: () -> Unit,
     acceptBtnEnabled: Boolean,
 ) {
-    Dialog(onDismissRequest = { onDismissRequest() }) {
+    Dialog(onDismissRequest = { cancel() }) {
         Box(
             modifier = modifier
                 .clip(RoundedCornerShape(18.dp))
@@ -39,24 +41,24 @@ fun CustomDialog(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.SpaceAround,
             ) {
-                Text(text = "서식명을 입력해주세요", modifier = Modifier.padding(8.dp,0.dp))
+                Text(text = title, modifier = Modifier.padding(8.dp, 0.dp))
                 content()
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(
-                        onClick = { onDismissRequest() },
+                        onClick = { cancel() },
                         contentPadding = PaddingValues(0.dp)
                     ) {
-                        Text(text = "취소")
+                        Text(text = stringResource(id = AppText.취소))
                     }
                     TextButton(
-                        onClick = { onAcceptRequest() },
+                        onClick = { okay() },
                         contentPadding = PaddingValues(0.dp),
                         enabled = acceptBtnEnabled
                     ) {
-                        Text(text = "확인")
+                        Text(text = stringResource(id = AppText.확인))
                     }
                 }
             }

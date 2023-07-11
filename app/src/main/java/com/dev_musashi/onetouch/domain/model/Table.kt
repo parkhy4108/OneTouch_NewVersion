@@ -7,24 +7,12 @@ import androidx.room.PrimaryKey
 data class Table(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
-
+    val id: Int = 0,
+    val timestamp: Long,
     val title: String,
-
     val name: String,
-    val nameContent: String,
-
     val species: String,
-    val speciesContent: String,
-
     val location: String,
-    val locationContent: String,
-
     val date: String,
-    val dateContent: String,
-
-    val empty: String,
-    val emptyContent: String,
-
-    val timestamp: Long
+    val note: String,
 )

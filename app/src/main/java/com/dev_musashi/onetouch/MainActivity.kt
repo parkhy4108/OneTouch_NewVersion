@@ -46,67 +46,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun TablePreview(){
-    val focusRequester = FocusRequester()
-    val tableScrollState = rememberScrollState()
-    LazyRow(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(170.dp),
-    ) {
-        items(1) {
-            Column(
-                modifier = Modifier
-                    .fillParentMaxSize()
-            ) {
-                TableRow(
-                    value1 = "table.name",
-                    value2 = "table.nameContent",
-                    onValue1Change = {  },
-                    onValue2Change = {  },
-                    onButtonClicked = {},
-                    focusRequester = focusRequester
-                )
-                TableRow(
-                    value1 = "table.species",
-                    value2 = "table.speciesContent",
-                    onValue1Change = { },
-                    onValue2Change = {  },
-                    onButtonClicked = {},
-                    focusRequester = focusRequester
-                )
-                TableRow(
-                    value1 = "table.location",
-                    value2 = "table.locationContent",
-                    onValue1Change = {  },
-                    onValue2Change = {  },
-                    onButtonClicked = {},
-                    focusRequester = focusRequester
-                )
-                TableRow(
-                    value1 = "table.date",
-                    value2 = "table.dateContent",
-                    onValue1Change = {  },
-                    onValue2Change = {  },
-                    onButtonClicked = {},
-                    focusRequester = focusRequester
-                )
-
-                TableRow(
-                    value1 = "table.empty",
-                    value2 = "table.emptyContent",
-                    onValue1Change = {  },
-                    onValue2Change = {  },
-                    onButtonClicked = {},
-                    focusRequester = focusRequester
-                )
-            }
-        }
-    }
-
-}
 
 
 @Preview(showBackground = true)

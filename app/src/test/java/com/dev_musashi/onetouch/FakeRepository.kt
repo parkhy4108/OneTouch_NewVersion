@@ -14,7 +14,7 @@ class FakeRepository : Repository {
         return tables.find { it.id == id }!!
     }
 
-    override suspend fun insertTable(table: Table) {
+    override suspend fun upsertTable(table: Table) {
         tables.add(table)
     }
 

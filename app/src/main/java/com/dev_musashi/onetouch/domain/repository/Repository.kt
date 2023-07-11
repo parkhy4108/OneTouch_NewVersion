@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
     fun getTables(): Flow<List<Table>>
-    suspend fun getTable(id: Long) : Table
-    suspend fun insertTable(table: Table)
+    suspend fun getTable(id: Int) : Table
+    suspend fun upsertTable(table: Table)
     suspend fun deleteTable(table: Table)
 }
