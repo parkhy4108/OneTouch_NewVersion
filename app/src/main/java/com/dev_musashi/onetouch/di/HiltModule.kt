@@ -38,7 +38,7 @@ object HiltModule {
         return UseCases(
             getTables = GetTables(repository),
             getTable = GetTable(repository),
-            insertTable = InsertTable(repository),
+            upsertTable = UpsertTable(repository),
             deleteTable = DeleteTable(repository)
         )
     }

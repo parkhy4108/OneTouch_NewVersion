@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -25,23 +26,26 @@ fun TableButton(
     val backgroundColor = if (isSelectedState) Color.Blue else Color.DarkGray
     Box(
         modifier = modifier
+            .width(70.dp)
+            .height(28.dp)
+            .clip(RoundedCornerShape(18.dp))
+            .background(color = Color.DarkGray)
+            .pointerInput(Unit) {
+                detectTapGestures(
+                    onTap = { onClick() },
+                    onLongPress = { onLongClick() }
+                )
+            }
+            .background(color = backgroundColor)
+        ,
+        contentAlignment = Alignment.Center
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onTap = { onClick() },
-                        onLongPress = { onLongClick() }
-                    )
-                }
-                .clip(RoundedCornerShape(15.dp))
-                .background(color = backgroundColor),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(text = text, fontSize = 9.sp, color = Color.White)
-        }
+        Text(
+            text = text,
+            fontSize = 12.sp,
+            color = Color.White,
+            textAlign = TextAlign.Center
+        )
     }
 
 }
