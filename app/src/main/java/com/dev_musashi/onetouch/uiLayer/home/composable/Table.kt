@@ -1,8 +1,5 @@
 package com.dev_musashi.onetouch.uiLayer.home.composable
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,11 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -49,35 +43,35 @@ fun Table(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         TableRow(
-            text = stringResource(id = AppText.공사명),
+            text = stringResource(id = AppText.Name),
             value = state.name,
             onEvent = { onEvent(UIEvent.SetName(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
-            text = stringResource(id = AppText.공종),
+            text = stringResource(id = AppText.Species),
             value = state.species,
             onEvent = { onEvent(UIEvent.SetSpecies(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
-            text = stringResource(id = AppText.위치),
+            text = stringResource(id = AppText.Location),
             value = state.location,
             onEvent = { onEvent(UIEvent.SetLocation(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
-            text = stringResource(id = AppText.날짜),
+            text = stringResource(id = AppText.Date),
             value = state.date,
             onEvent = { onEvent(UIEvent.SetDate(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
-            text = stringResource(id = AppText.비고),
+            text = stringResource(id = AppText.Note),
             value = state.note,
             onEvent = { onEvent(UIEvent.SetNote(it)) },
             focusRequester = focusRequester
@@ -142,35 +136,35 @@ fun TablePreview() {
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             TableRow(
-                text = stringResource(id = AppText.공사명),
+                text = stringResource(id = AppText.Name),
                 value = "state.name",
                 onEvent = { },
                 focusRequester = focusRequester
             )
             Divider(modifier = Modifier.fillMaxWidth())
             TableRow(
-                text = stringResource(id = AppText.공종),
+                text = stringResource(id = AppText.Species),
                 value = "state.species",
                 onEvent = { },
                 focusRequester = focusRequester
             )
             Divider(modifier = Modifier.fillMaxWidth())
             TableRow(
-                text = stringResource(id = AppText.위치),
+                text = stringResource(id = AppText.Location),
                 value = "state.location",
                 onEvent = { },
                 focusRequester = focusRequester
             )
             Divider(modifier = Modifier.fillMaxWidth())
             TableRow(
-                text = stringResource(id = AppText.날짜),
+                text = stringResource(id = AppText.Date),
                 value = "state.date",
                 onEvent = { },
                 focusRequester = focusRequester
             )
             Divider(modifier = Modifier.fillMaxWidth())
             TableRow(
-                text = stringResource(id = AppText.비고),
+                text = stringResource(id = AppText.Note),
                 value = "state.note",
                 onEvent = { },
                 focusRequester = focusRequester

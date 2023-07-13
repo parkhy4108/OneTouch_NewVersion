@@ -3,6 +3,7 @@ package com.dev_musashi.onetouch.uiLayer.home
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dev_musashi.onetouch.R.string as AppText
 import com.dev_musashi.onetouch.domain.model.TitleButton
 import com.dev_musashi.onetouch.domain.model.Table
 import com.dev_musashi.onetouch.domain.usecase.UpsertTable
@@ -33,24 +34,12 @@ class HomeViewModel @Inject constructor(
     private val deleteTable: DeleteTable
 ) : ViewModel() {
 
-
-
     private val _buttonList = MutableStateFlow<List<TitleButton>>(emptyList())
         .flatMapLatest { getTableIdAndTitle() }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val _state = MutableStateFlow(HomeState())
 
-//    private val isSelected = mutableStateMapOf<>()
-
-    //    val state = combine(_state,  _buttonList, restoreId) { state, buttonList, restoreId ->
-//        if(restoreId != -1) {
-//            println("restored Id: $restoreId")
-//        } else {
-//            println("restored Id가 현재 없음.")
-//        }
-//        state.copy(titleBtnList = buttonList)
-//    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeState())
     val state = combine(_state, _buttonList) { state, buttonList ->
         state.copy(titleBtnList = buttonList)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeState())
@@ -59,7 +48,7 @@ class HomeViewModel @Inject constructor(
         val restoredBtn = savedStateHandle.get<TitleButton>("button")
         if(restoredBtn != null) {
             println("restoreBtn : $restoredBtn")
-            setButton(restoredBtn.id)
+            setButton(restoredBtn)
             setTable(restoredBtn)
         }
     }
@@ -69,8 +58,6 @@ class HomeViewModel @Inject constructor(
         when (event) {
 
             UIEvent.AddTable -> {
-
-                println("테이블 추가")
 
                 val table = Table(
                     title = state.value.title,
@@ -115,10 +102,10 @@ class HomeViewModel @Inject constructor(
                         upsertTable(table)
                     }
 
-                    SnackBarManager.showMessage("저장되었습니다")
+                    SnackBarManager.showMessage(AppText.SaveTitle)
 
                 } else {
-                    println("선택된 테이블 없음 저장 안됨")
+                    SnackBarManager.showMessage(AppText.NoSelectedTable)
                 }
             }
 
@@ -148,22 +135,15 @@ class HomeViewModel @Inject constructor(
             }
 
             UIEvent.ShowAddDialog -> {
-                println("테이블 추가 다이얼로그 오픈")
                 _state.update { it.copy(isAddingTable = true) }
             }
 
             UIEvent.HideAddDialog -> {
-                _state.update {
-                    println("테이블 추가 다이얼로그 취소")
-                    it.copy(isAddingTable = false, title = "")
-                }
+                _state.update { it.copy(isAddingTable = false, title = "") }
             }
 
             UIEvent.HideDelDialog -> {
-                _state.update {
-                    println("테이블 삭제 다이얼로그 취소")
-                    it.copy(isDeletingTable = false)
-                }
+                _state.update { it.copy(isDeletingTable = false) }
             }
 
             UIEvent.OpenGallery -> {
@@ -176,11 +156,9 @@ class HomeViewModel @Inject constructor(
 
             is UIEvent.ShowDelDialog -> {
 
-                println("테이블 삭제 다이얼로그 오픈")
-
                 savedStateHandle["button"] = event.btn
 
-                setButton(event.btn.id)
+                setButton(event.btn)
 
                 setTable(event.btn)
 
@@ -194,7 +172,7 @@ class HomeViewModel @Inject constructor(
 
                 savedStateHandle["button"] = event.btn
 
-                setButton(event.btn.id)
+                setButton(event.btn)
 
                 setTable(event.btn)
 
@@ -228,26 +206,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun setButton(id: Int) {
+    private fun setButton(btn: TitleButton) {
         val selectedMap = _state.value.isSelected
         val selectedButton = selectedMap.entries.find { it.value }
-
-        println("-----")
-        selectedMap.entries.forEach {
-            println("변경 전 버튼 색깔 Map: ${Pair(it.key, it.value)}")
-        }
-        println("기존의 눌려 있는 버튼 : ${selectedButton?.key ?: "null"}")
-        println("-----")
-
         if (selectedButton != null) selectedMap[selectedButton.key] = false
-        selectedMap[id] = true
-
-        println("-----")
-        selectedMap.entries.forEach {
-            println("변경 후 버튼 색깔 Map: ${Pair(it.key, it.value)}")
-        }
-        println("새로 색깔 변경된 버튼 : ${selectedMap.entries.find { it.value }!!.key}")
-        println("-----")
+        selectedMap[btn.id] = true
+        _state.update { it.copy(currentBtn = btn) }
     }
 
     private fun setTable(btn: TitleButton) {
@@ -256,7 +220,6 @@ class HomeViewModel @Inject constructor(
             println("get Table: $table")
             _state.update {
                 it.copy(
-                    currentBtn = btn,
                     name = table.name,
                     species = table.species,
                     location = table.location,

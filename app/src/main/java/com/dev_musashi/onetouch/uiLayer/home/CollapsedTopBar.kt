@@ -1,18 +1,15 @@
 package com.dev_musashi.onetouch.uiLayer.home
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,7 +26,7 @@ fun CollapsedTopBar() {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = stringResource(id = R.string.원터치보드판), color = Color.Black, fontSize = 10.sp,)
+        Text(text = stringResource(id = R.string.OneTouch), color = Color.Black, fontSize = 10.sp,)
     }
 }
 
@@ -44,6 +41,6 @@ fun TopBarPreview(){
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = stringResource(id = R.string.원터치보드판), color = Color.Black, fontSize = 10.sp,)
+        Text(text = stringResource(id = R.string.OneTouch), color = Color.Black, fontSize = 10.sp,)
     }
 }

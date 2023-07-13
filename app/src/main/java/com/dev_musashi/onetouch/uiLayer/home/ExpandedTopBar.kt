@@ -34,7 +34,7 @@ fun ExpandedTopBar(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = stringResource(id = R.string.원터치보드판), color = Color.Black, fontSize = 10.sp)
+        Text(text = stringResource(id = R.string.OneTouch), color = Color.Black, fontSize = 10.sp)
         Icon(
             modifier = Modifier.clickable { onEvent(UIEvent.OpenGallery) },
             painter = painterResource(id = R.drawable.ic_photo),
