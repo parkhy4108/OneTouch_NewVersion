@@ -7,7 +7,7 @@ import javax.inject.Inject
 class DeleteTable @Inject constructor(
     private val repository: Repository
 ) {
-    suspend operator fun invoke(table: Table) {
-        return repository.deleteTable(table)
+    suspend operator fun invoke(id: Int) {
+        return repository.deleteTable(id)
     }
 }

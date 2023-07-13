@@ -1,6 +1,7 @@
 package com.dev_musashi.onetouch.data.repository
 
 import com.dev_musashi.onetouch.data.data_source.Dao
+import com.dev_musashi.onetouch.domain.model.TitleButton
 import com.dev_musashi.onetouch.domain.model.Table
 import com.dev_musashi.onetouch.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +15,10 @@ class RepositoryImpl @Inject constructor(
         return dao.getTables()
     }
 
+    override fun getTableIdAndTitle(): Flow<List<TitleButton>> {
+        return dao.getTablesIdAndTitle()
+    }
+
     override suspend fun getTable(id: Int): Table {
         return dao.getTable(id)
     }
@@ -22,7 +27,7 @@ class RepositoryImpl @Inject constructor(
         return dao.upsertTable(table)
     }
 
-    override suspend fun deleteTable(table: Table) {
-        return dao.deleteTable(table)
+    override suspend fun deleteTable(id: Int) {
+        return dao.deleteTable(id)
     }
 }

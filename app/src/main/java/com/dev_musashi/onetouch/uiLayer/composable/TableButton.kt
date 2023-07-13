@@ -26,18 +26,15 @@ fun TableButton(
     val backgroundColor = if (isSelectedState) Color.Blue else Color.DarkGray
     Box(
         modifier = modifier
-            .width(70.dp)
-            .height(28.dp)
-            .clip(RoundedCornerShape(18.dp))
-            .background(color = Color.DarkGray)
+            .clip(RoundedCornerShape(6.dp))
+            .background(color = backgroundColor)
             .pointerInput(Unit) {
                 detectTapGestures(
                     onTap = { onClick() },
                     onLongPress = { onLongClick() }
                 )
             }
-            .background(color = backgroundColor)
-        ,
+            ,
         contentAlignment = Alignment.Center
     ) {
         Text(
