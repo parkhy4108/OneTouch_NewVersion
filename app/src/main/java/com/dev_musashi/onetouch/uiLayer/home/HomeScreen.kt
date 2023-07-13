@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,7 +22,6 @@ import com.dev_musashi.onetouch.uiLayer.composable.ButtonList
 import com.dev_musashi.onetouch.uiLayer.composable.DeleteDialog
 import com.dev_musashi.onetouch.uiLayer.home.composable.Table
 import com.dev_musashi.onetouch.uiLayer.util.addFocusCleaner
-import kotlinx.coroutines.launch
 import com.dev_musashi.onetouch.R.drawable as AppImg
 import com.dev_musashi.onetouch.R.string as AppText
 
@@ -56,7 +54,7 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = stringResource(id = AppText.원터치보드판),
+                        text = stringResource(id = AppText.OneTouch),
                         color = Color.Black,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
@@ -88,7 +86,7 @@ fun HomeScreen(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = stringResource(id = AppText.서식입력),
+                        text = stringResource(id = AppText.BoardTitle),
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
                     )

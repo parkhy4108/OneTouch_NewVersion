@@ -42,8 +42,8 @@ fun DeleteDialog(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(text = stringResource(id = AppText.서식삭제), modifier = Modifier.padding(8.dp, 0.dp))
-                Text(text = stringResource(id = AppText.tableDelete), modifier = Modifier.padding(8.dp, 0.dp))
+                Text(text = stringResource(id = AppText.DeleteTable), modifier = Modifier.padding(8.dp, 0.dp))
+                Text(text = stringResource(id = AppText.DelDialogText), modifier = Modifier.padding(8.dp, 0.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
@@ -51,13 +51,13 @@ fun DeleteDialog(
                     TextButton(
                         onClick = { onEvent(UIEvent.HideDelDialog) },
                         contentPadding = PaddingValues(0.dp),
-                        content = { Text(text = stringResource(id = AppText.취소)) }
+                        content = { Text(text = stringResource(id = AppText.Cancel)) }
                     )
                     TextButton(
                         onClick = { onEvent(UIEvent.DeleteTable) },
                         contentPadding = PaddingValues(0.dp),
                         enabled = true,
-                        content = { Text(text = stringResource(id = AppText.확인)) }
+                        content = { Text(text = stringResource(id = AppText.Okay)) }
                     )
                 }
             }
@@ -81,8 +81,8 @@ fun DelDialogPreview(){
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
-                Text(text = stringResource(id = AppText.서식삭제), modifier = Modifier.padding(8.dp, 0.dp))
-                Text(text = stringResource(id = AppText.tableDelete), modifier = Modifier.padding(8.dp, 0.dp))
+                Text(text = stringResource(id = AppText.DeleteTable), modifier = Modifier.padding(8.dp, 0.dp))
+                Text(text = stringResource(id = AppText.DelDialogText), modifier = Modifier.padding(8.dp, 0.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
@@ -90,13 +90,13 @@ fun DelDialogPreview(){
                     TextButton(
                         onClick = {  },
                         contentPadding = PaddingValues(0.dp),
-                        content = { Text(text = stringResource(id = AppText.취소)) }
+                        content = { Text(text = stringResource(id = AppText.Cancel)) }
                     )
                     TextButton(
                         onClick = {  },
                         contentPadding = PaddingValues(0.dp),
                         enabled = true,
-                        content = { Text(text = stringResource(id = AppText.확인)) }
+                        content = { Text(text = stringResource(id = AppText.Okay)) }
                     )
                 }
             }

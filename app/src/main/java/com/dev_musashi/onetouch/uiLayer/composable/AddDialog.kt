@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,7 +19,6 @@ import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -51,7 +49,7 @@ fun AddDialog(
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    text = stringResource(id = AppText.서식저장),
+                    text = stringResource(id = AppText.AddDialogTitle),
                     modifier = Modifier.padding(8.dp, 3.dp, 0.dp, 0.dp)
                 )
                 TextField(
@@ -61,7 +59,7 @@ fun AddDialog(
                     singleLine = true,
                     colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
                     textStyle = TextStyle.Default.copy(fontSize = 18.sp),
-                    placeholder = { Text(text = stringResource(id = AppText.tableTitle)) }
+                    placeholder = { Text(text = stringResource(id = AppText.TitlePlaceHolder)) }
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -70,13 +68,13 @@ fun AddDialog(
                     TextButton(
                         onClick = { onEvent(UIEvent.HideAddDialog) },
                         contentPadding = PaddingValues(0.dp),
-                        content = { Text(text = stringResource(id = AppText.취소)) }
+                        content = { Text(text = stringResource(id = AppText.Cancel)) }
                     )
                     TextButton(
                         onClick = { onEvent(UIEvent.AddTable) },
                         contentPadding = PaddingValues(0.dp),
                         enabled = state.title.isNotBlank(),
-                        content = { Text(text = stringResource(id = AppText.확인)) }
+                        content = { Text(text = stringResource(id = AppText.Okay)) }
                     )
                 }
             }
@@ -101,7 +99,7 @@ fun AddDialogPreview(){
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 Text(
-                    text = stringResource(id = AppText.서식저장),
+                    text = stringResource(id = AppText.AddDialogTitle),
                     modifier = Modifier.padding(8.dp, 3.dp, 0.dp, 0.dp)
                 )
                 TextField(
@@ -111,7 +109,7 @@ fun AddDialogPreview(){
                     singleLine = true,
                     colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
                     textStyle = TextStyle.Default.copy(fontSize = 18.sp),
-                    placeholder = { Text(text = stringResource(id = AppText.tableTitle)) }
+                    placeholder = { Text(text = stringResource(id = AppText.TitlePlaceHolder)) }
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -120,13 +118,13 @@ fun AddDialogPreview(){
                     TextButton(
                         onClick = {  },
                         contentPadding = PaddingValues(0.dp),
-                        content = { Text(text = stringResource(id = AppText.취소)) }
+                        content = { Text(text = stringResource(id = AppText.Cancel)) }
                     )
                     TextButton(
                         onClick = {  },
                         contentPadding = PaddingValues(0.dp),
                         enabled = true,
-                        content = { Text(text = stringResource(id = AppText.확인)) }
+                        content = { Text(text = stringResource(id = AppText.Okay)) }
                     )
                 }
             }
