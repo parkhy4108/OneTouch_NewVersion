@@ -41,7 +41,6 @@ import com.dev_musashi.onetouch.R.string as AppText
 fun Table(
     state: HomeState,
     onEvent: (UIEvent) -> Unit,
-    scrollState: ScrollState,
     focusRequester: FocusRequester
 ) {
     Column(
