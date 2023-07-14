@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.composable
+package com.dev_musashi.onetouch
 
 import android.content.res.Resources
 import androidx.compose.material.*

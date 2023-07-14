@@ -10,7 +10,7 @@ sealed interface UIEvent {
     object HideAddDialog: UIEvent
     object HideDelDialog: UIEvent
     object OpenGallery: UIEvent
-    object OpenCamera: UIEvent
+    data class OpenCamera(val open : (String) -> Unit): UIEvent
 
     data class ShowDelDialog(val btn: TitleButton): UIEvent
     data class SetTitle(val title: String): UIEvent

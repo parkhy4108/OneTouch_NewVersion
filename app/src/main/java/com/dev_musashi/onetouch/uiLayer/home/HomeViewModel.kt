@@ -11,6 +11,7 @@ import com.dev_musashi.onetouch.domain.usecase.DeleteTable
 import com.dev_musashi.onetouch.domain.usecase.GetTable
 import com.dev_musashi.onetouch.domain.usecase.GetTableIdAndTitle
 import com.dev_musashi.onetouch.domain.usecase.GetTables
+import com.dev_musashi.onetouch.navigation.Screen
 import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -150,8 +151,13 @@ class HomeViewModel @Inject constructor(
                 println("갤러리 버튼 클릭")
             }
 
-            UIEvent.OpenCamera -> {
-                println("촬영 버튼 클릭")
+            is UIEvent.OpenCamera -> {
+                val currentBtn = state.value.currentBtn
+                if(currentBtn != null) {
+                    event.open(Screen.CameraScreen.passId(currentBtn.id))
+                } else {
+                    SnackBarManager.showMessage(AppText.NoSelectedTable)
+                }
             }
 
             is UIEvent.ShowDelDialog -> {

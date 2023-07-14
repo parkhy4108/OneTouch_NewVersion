@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.uiTheme.theme
+package com.dev_musashi.onetouch.uiLayer.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

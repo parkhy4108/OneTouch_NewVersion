@@ -6,10 +6,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.dev_musashi.onetouch.uiLayer.common.Screen
-import com.dev_musashi.onetouch.uiLayer.common.graph
-import com.dev_musashi.onetouch.uiLayer.uiTheme.theme.OneTouchTheme
-import com.dev_musashi.onetouch.uiLayer.composable.rememberAppState
+import com.dev_musashi.onetouch.navigation.Screen
+import com.dev_musashi.onetouch.navigation.graph
+import com.dev_musashi.onetouch.uiLayer.theme.OneTouchTheme
 
 @Composable
 fun MainContents() {
@@ -36,7 +35,7 @@ fun MainContents() {
                     startDestination = Screen.HomeScreen.route,
                     modifier = Modifier.padding(innerPadding)
                 ) {
-                    graph()
+                    graph(appState)
                 }
             }
         }

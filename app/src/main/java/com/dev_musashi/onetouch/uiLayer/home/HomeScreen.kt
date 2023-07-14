@@ -1,5 +1,7 @@
 package com.dev_musashi.onetouch.uiLayer.home
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,23 +12,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dev_musashi.onetouch.uiLayer.composable.AddDialog
 import com.dev_musashi.onetouch.uiLayer.composable.ButtonList
 import com.dev_musashi.onetouch.uiLayer.composable.DeleteDialog
 import com.dev_musashi.onetouch.uiLayer.home.composable.Table
-import com.dev_musashi.onetouch.uiLayer.util.addFocusCleaner
+import com.dev_musashi.onetouch.uiLayer.composable.addFocusCleaner
+import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarManager
 import com.dev_musashi.onetouch.R.drawable as AppImg
 import com.dev_musashi.onetouch.R.string as AppText
 
 @Composable
 fun HomeScreen(
+    openScreen: (String) -> Unit,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     val state by homeViewModel.state.collectAsState()
@@ -34,7 +40,7 @@ fun HomeScreen(
     val focusManager = LocalFocusManager.current
     val focusRequester by remember { mutableStateOf(FocusRequester()) }
     val lazyListState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     LazyColumn {
         item {
@@ -151,7 +157,17 @@ fun HomeScreen(
                 ) {
                     Button(
                         modifier = Modifier.width(200.dp),
-                        onClick = { onEvent(UIEvent.OpenCamera) }
+                        onClick = {
+                            if(ContextCompat.checkSelfPermission(
+                                    context,
+                                    Manifest.permission.CAMERA
+                            ) == PackageManager.PERMISSION_GRANTED) {
+                                onEvent(UIEvent.OpenCamera(openScreen))
+                            } else {
+                                SnackBarManager.showMessage(AppText.CameraPermissionDenied)
+                            }
+
+                        }
                     ) {
                         Text(text = "촬영", fontSize = 10.sp)
                     }
