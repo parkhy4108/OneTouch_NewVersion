@@ -50,6 +50,9 @@ class CameraViewModel @Inject constructor(
 
             }
 
+            CAMERAUIEvent.FlashClick -> {
+                state.value = state.value.copy(flash = !state.value.flash)
+            }
 
             // 1. history save
             is CAMERAUIEvent.TakePictureButton -> {
