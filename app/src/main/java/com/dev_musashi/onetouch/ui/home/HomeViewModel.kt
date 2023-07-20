@@ -1,18 +1,18 @@
-package com.dev_musashi.onetouch.uiLayer.home
+package com.dev_musashi.onetouch.ui.home
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dev_musashi.onetouch.R.string as AppText
-import com.dev_musashi.onetouch.domain.model.TitleButton
+import com.dev_musashi.onetouch.domain.model.History
 import com.dev_musashi.onetouch.domain.model.Table
-import com.dev_musashi.onetouch.domain.usecase.UpsertTable
+import com.dev_musashi.onetouch.domain.model.TitleButton
 import com.dev_musashi.onetouch.domain.usecase.DeleteTable
+import com.dev_musashi.onetouch.domain.usecase.GetAllHistory
 import com.dev_musashi.onetouch.domain.usecase.GetTable
 import com.dev_musashi.onetouch.domain.usecase.GetTableIdAndTitle
-import com.dev_musashi.onetouch.domain.usecase.GetTables
-import com.dev_musashi.onetouch.navigation.Screen
-import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarManager
+import com.dev_musashi.onetouch.domain.usecase.UpsertTable
+import com.dev_musashi.onetouch.ui.navigation.Screen
+import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,17 +23,22 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.dev_musashi.onetouch.R.string as AppText
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getTables: GetTables,
+    private val getAllHistory: GetAllHistory,
     private val getTableIdAndTitle: GetTableIdAndTitle,
     private val getTable: GetTable,
     private val upsertTable: UpsertTable,
     private val deleteTable: DeleteTable
 ) : ViewModel() {
+
+    private val _historyList = MutableStateFlow<List<History>>(emptyList())
+        .flatMapLatest { getAllHistory() }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val _buttonList = MutableStateFlow<List<TitleButton>>(emptyList())
         .flatMapLatest { getTableIdAndTitle() }
@@ -41,8 +46,8 @@ class HomeViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(HomeState())
 
-    val state = combine(_state, _buttonList) { state, buttonList ->
-        state.copy(titleBtnList = buttonList)
+    val state = combine(_state, _buttonList, _historyList) { state, buttonList, historyList ->
+        state.copy(titleBtnList = buttonList, history = historyList)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeState())
 
     init {
@@ -55,10 +60,10 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun onEvent(event: UIEvent) {
+    fun onEvent(event: HOMEUIEvent) {
         when (event) {
 
-            UIEvent.AddTable -> {
+            HOMEUIEvent.AddTable -> {
 
                 val table = Table(
                     title = state.value.title,
@@ -77,7 +82,7 @@ class HomeViewModel @Inject constructor(
 
             }
 
-            UIEvent.SaveTable -> {
+            HOMEUIEvent.SaveTable -> {
 
                 val currentTableBtn = state.value.currentBtn
 
@@ -110,7 +115,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
-            UIEvent.DeleteTable -> {
+            HOMEUIEvent.DeleteTable -> {
                 if (state.value.currentBtn != null) {
 
                     val currentBtnId = state.value.currentBtn!!.id
@@ -135,23 +140,23 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
-            UIEvent.ShowAddDialog -> {
+            HOMEUIEvent.ShowAddDialog -> {
                 _state.update { it.copy(isAddingTable = true) }
             }
 
-            UIEvent.HideAddDialog -> {
+            HOMEUIEvent.HideAddDialog -> {
                 _state.update { it.copy(isAddingTable = false, title = "") }
             }
 
-            UIEvent.HideDelDialog -> {
+            HOMEUIEvent.HideDelDialog -> {
                 _state.update { it.copy(isDeletingTable = false) }
             }
 
-            UIEvent.OpenGallery -> {
+            HOMEUIEvent.OpenGallery -> {
                 println("갤러리 버튼 클릭")
             }
 
-            is UIEvent.OpenCamera -> {
+            is HOMEUIEvent.OpenCamera -> {
                 val currentBtn = state.value.currentBtn
                 if(currentBtn != null) {
                     event.open(Screen.CameraScreen.passId(currentBtn.id))
@@ -160,7 +165,7 @@ class HomeViewModel @Inject constructor(
                 }
             }
 
-            is UIEvent.ShowDelDialog -> {
+            is HOMEUIEvent.ShowDelDialog -> {
 
                 savedStateHandle["button"] = event.btn
 
@@ -172,7 +177,7 @@ class HomeViewModel @Inject constructor(
 
             }
 
-            is UIEvent.ClickTitleBtn -> {
+            is HOMEUIEvent.ClickTitleBtn -> {
 
                 println("테이블 클릭: ${event.btn}")
 
@@ -184,27 +189,27 @@ class HomeViewModel @Inject constructor(
 
             }
 
-            is UIEvent.SetDate -> {
+            is HOMEUIEvent.SetDate -> {
                 _state.update { it.copy(date = event.date) }
             }
 
-            is UIEvent.SetLocation -> {
+            is HOMEUIEvent.SetLocation -> {
                 _state.update { it.copy(location = event.location) }
             }
 
-            is UIEvent.SetName -> {
+            is HOMEUIEvent.SetName -> {
                 _state.update { it.copy(name = event.name) }
             }
 
-            is UIEvent.SetNote -> {
+            is HOMEUIEvent.SetNote -> {
                 _state.update { it.copy(note = event.note) }
             }
 
-            is UIEvent.SetSpecies -> {
+            is HOMEUIEvent.SetSpecies -> {
                 _state.update { it.copy(species = event.species) }
             }
 
-            is UIEvent.SetTitle -> {
+            is HOMEUIEvent.SetTitle -> {
                 _state.update { it.copy(title = event.title) }
             }
 

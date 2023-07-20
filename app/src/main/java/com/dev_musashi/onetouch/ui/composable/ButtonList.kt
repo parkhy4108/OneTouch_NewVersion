@@ -1,9 +1,7 @@
-package com.dev_musashi.onetouch.uiLayer.composable
+package com.dev_musashi.onetouch.ui.composable
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -11,26 +9,21 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.ButtonElevation
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dev_musashi.onetouch.domain.model.TitleButton
 import com.dev_musashi.onetouch.domain.model.Table
-import com.dev_musashi.onetouch.uiLayer.home.UIEvent
+import com.dev_musashi.onetouch.ui.home.HOMEUIEvent
 
 @Composable
 fun ButtonList(
@@ -38,7 +31,7 @@ fun ButtonList(
     lazyListState: LazyListState,
     isSelectedState: MutableMap<Int, Boolean>,
     focusManager: FocusManager,
-    onEvent: (UIEvent) -> Unit
+    onEvent: (HOMEUIEvent) -> Unit
 ) {
     LazyRow(
         modifier = Modifier
@@ -57,11 +50,11 @@ fun ButtonList(
                     .height(28.dp),
                 text = item.title,
                 onClick = {
-                    onEvent(UIEvent.ClickTitleBtn(item))
+                    onEvent(HOMEUIEvent.ClickTitleBtn(item))
                     focusManager.clearFocus()
                 },
-                onLongClick = { onEvent(UIEvent.ShowDelDialog(item)) },
-                isSelectedState = isSelectedState[item.id] ?: false,
+                onLongClick = { onEvent(HOMEUIEvent.ShowDelDialog(item)) },
+                isSelectedState = isSelectedState[item.id] ?: false
             )
         }
     }
@@ -83,7 +76,7 @@ fun ListPreview() {
             species = it.toString(),
             location = it.toString(),
             date = it.toString(),
-            note = it.toString(),
+            note = it.toString()
         )
         list.add(table)
     }

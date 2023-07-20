@@ -1,7 +1,8 @@
-package com.dev_musashi.onetouch.uiLayer.home
+package com.dev_musashi.onetouch.ui.home
 
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.ui.focus.FocusRequester
+import com.dev_musashi.onetouch.domain.model.History
 import com.dev_musashi.onetouch.domain.model.TitleButton
 
 data class HomeState(
@@ -16,6 +17,6 @@ data class HomeState(
     val isSelected: MutableMap<Int, Boolean> = mutableStateMapOf(),
     val isAddingTable: Boolean = false,
     val isDeletingTable: Boolean = false,
-    val history: List<String> = emptyList(),
+    val history: List<History> = emptyList(),
     val focusRequester: FocusRequester = FocusRequester()
 )

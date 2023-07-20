@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.util.snackBar
+package com.dev_musashi.onetouch.ui.util.snackBar
 
 import androidx.annotation.StringRes
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,11 +13,11 @@ object SnackBarManager {
         messages.value = SnackBarMessage.ResourceSnackBar(message)
     }
 
-    fun showMessage(message: SnackBarMessage) {
-        messages.value = message
-    }
-
     fun showMessage(message: String) {
         messages.value = SnackBarMessage.StringSnackBar(message)
+    }
+
+    fun showMessage(message: Throwable) {
+        messages.value = SnackBarMessage.StringSnackBar(message.toString())
     }
 }
