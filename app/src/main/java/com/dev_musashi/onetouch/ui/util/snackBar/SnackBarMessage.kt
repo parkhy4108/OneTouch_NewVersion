@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.util.snackBar
+package com.dev_musashi.onetouch.ui.util.snackBar
 
 import android.content.res.Resources
 import androidx.annotation.StringRes

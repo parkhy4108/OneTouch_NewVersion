@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flow
 class FakeRepository : Repository {
     val tables = mutableListOf<Table>()
 
-    override fun getTables(): Flow<List<Table>> = flow { emit(tables) }
+    override fun getAllTables(): Flow<List<Table>> = flow { emit(tables) }
 
     override suspend fun getTable(id: Long): Table {
         return tables.find { it.id == id }!!

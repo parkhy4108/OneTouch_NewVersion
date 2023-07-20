@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.navigation
+package com.dev_musashi.onetouch.ui.navigation
 
 const val CAMERA_ButtonId = "id"
 
