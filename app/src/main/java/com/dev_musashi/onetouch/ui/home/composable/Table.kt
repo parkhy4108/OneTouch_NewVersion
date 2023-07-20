@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.home.composable
+package com.dev_musashi.onetouch.ui.home.composable
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -27,14 +27,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dev_musashi.onetouch.R
-import com.dev_musashi.onetouch.uiLayer.home.HomeState
-import com.dev_musashi.onetouch.uiLayer.home.UIEvent
+import com.dev_musashi.onetouch.ui.home.HomeState
+import com.dev_musashi.onetouch.ui.home.HOMEUIEvent
 import com.dev_musashi.onetouch.R.string as AppText
 
 @Composable
 fun Table(
     state: HomeState,
-    onEvent: (UIEvent) -> Unit,
+    onEvent: (HOMEUIEvent) -> Unit,
     focusRequester: FocusRequester
 ) {
     Column(
@@ -45,35 +45,35 @@ fun Table(
         TableRow(
             text = stringResource(id = AppText.Name),
             value = state.name,
-            onEvent = { onEvent(UIEvent.SetName(it)) },
+            onEvent = { onEvent(HOMEUIEvent.SetName(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             text = stringResource(id = AppText.Species),
             value = state.species,
-            onEvent = { onEvent(UIEvent.SetSpecies(it)) },
+            onEvent = { onEvent(HOMEUIEvent.SetSpecies(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             text = stringResource(id = AppText.Location),
             value = state.location,
-            onEvent = { onEvent(UIEvent.SetLocation(it)) },
+            onEvent = { onEvent(HOMEUIEvent.SetLocation(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             text = stringResource(id = AppText.Date),
             value = state.date,
-            onEvent = { onEvent(UIEvent.SetDate(it)) },
+            onEvent = { onEvent(HOMEUIEvent.SetDate(it)) },
             focusRequester = focusRequester
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             text = stringResource(id = AppText.Note),
             value = state.note,
-            onEvent = { onEvent(UIEvent.SetNote(it)) },
+            onEvent = { onEvent(HOMEUIEvent.SetNote(it)) },
             focusRequester = focusRequester
         )
     }

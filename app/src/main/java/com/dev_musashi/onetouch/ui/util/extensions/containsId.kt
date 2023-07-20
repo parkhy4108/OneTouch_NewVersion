@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.util.extensions
+package com.dev_musashi.onetouch.ui.util.extensions
 
 import com.dev_musashi.onetouch.domain.model.TitleButton
 

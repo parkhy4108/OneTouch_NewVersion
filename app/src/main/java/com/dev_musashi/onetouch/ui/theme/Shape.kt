@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.theme
+package com.dev_musashi.onetouch.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -40,7 +40,6 @@ class AppState constructor(
     private val resources: Resources,
     coroutineScope: CoroutineScope
 ) {
-
     init {
         coroutineScope.launch {
             val text = SnackBarManager.snackMessage.value.toString()
@@ -54,8 +53,6 @@ class AppState constructor(
             }
         }
     }
-
-
 
     fun popUp() {
         navController.popBackStack()
