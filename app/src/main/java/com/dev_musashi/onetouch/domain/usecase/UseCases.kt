@@ -1,9 +1,12 @@
 package com.dev_musashi.onetouch.domain.usecase
 
 data class UseCases(
-    val getTables: GetTables,
+    val getAllTables: GetAllTables,
+    val getAllHistory: GetAllHistory,
     val getTableIdAndTitle: GetTableIdAndTitle,
     val getTable: GetTable,
     val upsertTable: UpsertTable,
-    val deleteTable: DeleteTable
+    val upsertHistory: UpsertHistory,
+    val deleteTable: DeleteTable,
+    val saveImage: SaveImage
 )
