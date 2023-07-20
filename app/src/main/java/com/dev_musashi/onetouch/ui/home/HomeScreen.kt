@@ -1,10 +1,11 @@
-package com.dev_musashi.onetouch.uiLayer.home
+package com.dev_musashi.onetouch.ui.home
 
 import android.Manifest
 import android.content.pm.PackageManager
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -21,12 +22,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.dev_musashi.onetouch.uiLayer.composable.AddDialog
-import com.dev_musashi.onetouch.uiLayer.composable.ButtonList
-import com.dev_musashi.onetouch.uiLayer.composable.DeleteDialog
-import com.dev_musashi.onetouch.uiLayer.home.composable.Table
-import com.dev_musashi.onetouch.uiLayer.composable.addFocusCleaner
-import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarManager
+import com.dev_musashi.onetouch.ui.composable.AddDialog
+import com.dev_musashi.onetouch.ui.composable.ButtonList
+import com.dev_musashi.onetouch.ui.composable.DeleteDialog
+import com.dev_musashi.onetouch.ui.home.composable.Table
+import com.dev_musashi.onetouch.ui.composable.addFocusCleaner
+import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
 import com.dev_musashi.onetouch.R.drawable as AppImg
 import com.dev_musashi.onetouch.R.string as AppText
 
@@ -42,7 +43,7 @@ fun HomeScreen(
     val lazyListState = rememberLazyListState()
     val context = LocalContext.current
 
-    LazyColumn {
+    LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
             Column(
                 modifier = Modifier
@@ -66,7 +67,7 @@ fun HomeScreen(
                         fontWeight = FontWeight.Bold
                     )
                     Icon(
-                        modifier = Modifier.clickable { onEvent(UIEvent.OpenGallery) },
+                        modifier = Modifier.clickable { onEvent(HOMEUIEvent.OpenGallery) },
                         painter = painterResource(id = AppImg.ic_photo),
                         contentDescription = "gallery"
                     )
@@ -79,7 +80,11 @@ fun HomeScreen(
                         .height(200.dp)
                         .background(Color.Black)
                 ) {
-
+                    LazyColumn(modifier = Modifier) {
+                        items(state.history) { history ->
+                            Text(text = history.str, fontSize = 8.sp, color = Color.White)
+                        }
+                    }
                 }
 
                 //보드판 서식 입력 Text & 저장 버튼  & 추가 버튼
@@ -103,14 +108,14 @@ fun HomeScreen(
                         Icon(
                             modifier = Modifier.clickable {
                                 focusManager.clearFocus()
-                                onEvent(UIEvent.SaveTable)
+                                onEvent(HOMEUIEvent.SaveTable)
                             },
                             painter = painterResource(id = AppImg.ic_save),
                             contentDescription = null
                         )
                         Icon(
                             modifier = Modifier.clickable {
-                                onEvent(UIEvent.ShowAddDialog)
+                                onEvent(HOMEUIEvent.ShowAddDialog)
                             },
                             painter = painterResource(id = AppImg.ic_add),
                             contentDescription = "add"
@@ -162,7 +167,7 @@ fun HomeScreen(
                                     context,
                                     Manifest.permission.CAMERA
                             ) == PackageManager.PERMISSION_GRANTED) {
-                                onEvent(UIEvent.OpenCamera(openScreen))
+                                onEvent(HOMEUIEvent.OpenCamera(openScreen))
                             } else {
                                 SnackBarManager.showMessage(AppText.CameraPermissionDenied)
                             }
