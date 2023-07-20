@@ -6,9 +6,9 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import com.dev_musashi.onetouch.navigation.Screen
-import com.dev_musashi.onetouch.navigation.graph
-import com.dev_musashi.onetouch.uiLayer.theme.OneTouchTheme
+import com.dev_musashi.onetouch.ui.navigation.Screen
+import com.dev_musashi.onetouch.ui.navigation.graph
+import com.dev_musashi.onetouch.ui.theme.OneTouchTheme
 
 @Composable
 fun MainContents() {

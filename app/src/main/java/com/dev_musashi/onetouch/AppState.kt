@@ -9,8 +9,8 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarManager
-import com.dev_musashi.onetouch.uiLayer.util.snackBar.SnackBarMessage.Companion.toMessage
+import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
+import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarMessage.Companion.toMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
