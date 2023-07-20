@@ -10,14 +10,12 @@ import com.dev_musashi.onetouch.domain.usecase.GetTable
 import com.dev_musashi.onetouch.domain.usecase.UpsertHistory
 import com.dev_musashi.onetouch.sensor.RotationSensor
 import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
-import com.dev_musashi.onetouch.R.string as AppText
+import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarMessage.Companion.toSnackBarMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 import javax.inject.Inject
+import com.dev_musashi.onetouch.R.string as AppText
 
 @HiltViewModel
 class CameraViewModel @Inject constructor(
@@ -31,10 +29,6 @@ class CameraViewModel @Inject constructor(
         private set
 
     val rotationState = rotationSensor.state
-
-    private val cal: Calendar = Calendar.getInstance()
-    private val hour: Int = SimpleDateFormat("HH", Locale.getDefault()).format(cal.time).toInt()
-    private val min: Int = SimpleDateFormat("mm", Locale.getDefault()).format(cal.time).toInt()
 
     fun init(id: Int) {
         if (id != -1) {
@@ -96,7 +90,7 @@ class CameraViewModel @Inject constructor(
     private suspend fun saveImage(captureImg: ImageBitmap, pictureImg: Bitmap){
         viewModelScope.launch {
             gallery.saveImage(captureImg, pictureImg) { exception ->
-                if(exception != null) SnackBarManager.showMessage(exception)
+                if(exception != null) SnackBarManager.showMessage(exception.toSnackBarMessage())
                 else SnackBarManager.showMessage(AppText.SuccessSaveImg)
             }
         }
