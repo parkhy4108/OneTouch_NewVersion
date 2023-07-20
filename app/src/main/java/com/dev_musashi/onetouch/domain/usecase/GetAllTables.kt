@@ -5,10 +5,10 @@ import com.dev_musashi.onetouch.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetTables @Inject constructor(
+class GetAllTables @Inject constructor(
     private val repository: Repository
 ) {
     operator fun invoke(): Flow<List<Table>> {
-        return repository.getTables()
+        return repository.getAllTables()
     }
 }
