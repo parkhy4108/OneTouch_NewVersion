@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.uiLayer.composable
+package com.dev_musashi.onetouch.ui.composable
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.material.ExperimentalMaterialApi
