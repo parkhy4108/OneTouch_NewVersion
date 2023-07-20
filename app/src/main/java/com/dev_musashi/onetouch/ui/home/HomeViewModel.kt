@@ -78,7 +78,7 @@ class HomeViewModel @Inject constructor(
                     it.copy(isAddingTable = false, title = "")
                 }
 
-                SnackBarManager.showMessage("저장되었습니다.")
+                SnackBarManager.showMessage(AppText.SaveTitle)
 
             }
 
@@ -135,7 +135,7 @@ class HomeViewModel @Inject constructor(
                         )
                     }
 
-                    SnackBarManager.showMessage("삭제되었습니다.")
+                    SnackBarManager.showMessage(AppText.DeleteTableDone)
 
                 }
             }

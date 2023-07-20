@@ -1,17 +1,21 @@
 package com.dev_musashi.onetouch
 
 import android.content.res.Resources
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.ScaffoldState
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
 import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarMessage.Companion.toMessage
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
 
 @Composable
@@ -42,14 +46,9 @@ class AppState constructor(
 ) {
     init {
         coroutineScope.launch {
-            val text = SnackBarManager.snackMessage.value.toString()
-            SnackBarManager.snackMessage.collect { messages ->
-                if (messages != null && text != messages.toString()) {
-                    scaffoldState.snackbarHostState.showSnackbar(
-                        message = messages.toMessage(resources),
-                        duration = SnackbarDuration.Short
-                    )
-                }
+            snackBarManager.snackMessage.filterNotNull().collect { snackBarMessage ->
+                val text = snackBarMessage.toMessage(resources)
+                scaffoldState.snackbarHostState.showSnackbar(text)
             }
         }
     }
@@ -71,10 +70,4 @@ class AppState constructor(
         }
     }
 
-    private val NavGraph.startDestination: NavDestination?
-        get() = findNode(startDestinationId)
-
-    private tailrec fun findStartDestination(graph: NavDestination): NavDestination {
-        return if (graph is NavGraph) findStartDestination(graph.startDestination!!) else graph
-    }
 }

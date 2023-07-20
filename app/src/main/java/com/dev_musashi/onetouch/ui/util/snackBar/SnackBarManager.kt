@@ -13,11 +13,8 @@ object SnackBarManager {
         messages.value = SnackBarMessage.ResourceSnackBar(message)
     }
 
-    fun showMessage(message: String) {
-        messages.value = SnackBarMessage.StringSnackBar(message)
+    fun showMessage(message: SnackBarMessage) {
+        messages.value = message
     }
 
-    fun showMessage(message: Throwable) {
-        messages.value = SnackBarMessage.StringSnackBar(message.toString())
-    }
 }
