@@ -1,9 +1,8 @@
 package com.dev_musashi.onetouch.domain.usecase
 
-import android.graphics.Bitmap
+import androidx.camera.core.ImageProxy
 import androidx.compose.ui.graphics.ImageBitmap
 import com.dev_musashi.onetouch.domain.gallery.Gallery
-import com.dev_musashi.onetouch.domain.repository.Repository
 import javax.inject.Inject
 
 class SaveImage @Inject constructor(
@@ -11,7 +10,7 @@ class SaveImage @Inject constructor(
 ) {
     suspend operator fun invoke(
         captureImage: ImageBitmap,
-        pictureImg: Bitmap,
+        pictureImg: ImageProxy,
         onError: (Throwable?) -> Unit
     ) {
         return gallery.saveImage(captureImage, pictureImg, onError)

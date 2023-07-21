@@ -4,7 +4,6 @@ import com.dev_musashi.onetouch.domain.gallery.Gallery
 import com.dev_musashi.onetouch.domain.repository.Repository
 import com.dev_musashi.onetouch.domain.usecase.DeleteTable
 import com.dev_musashi.onetouch.domain.usecase.GetAllHistory
-import com.dev_musashi.onetouch.domain.usecase.GetAllTables
 import com.dev_musashi.onetouch.domain.usecase.GetTable
 import com.dev_musashi.onetouch.domain.usecase.GetTableIdAndTitle
 import com.dev_musashi.onetouch.domain.usecase.SaveImage
@@ -25,7 +24,6 @@ object UseCaseModule {
     @Singleton
     fun provideUseCases(repository: Repository, gallery: Gallery) : UseCases {
         return UseCases(
-            getAllTables = GetAllTables(repository),
             getTableIdAndTitle = GetTableIdAndTitle(repository),
             getTable = GetTable(repository),
             upsertTable = UpsertTable(repository),

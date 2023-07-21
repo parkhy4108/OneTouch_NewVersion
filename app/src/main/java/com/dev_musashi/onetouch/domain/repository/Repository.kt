@@ -1,13 +1,12 @@
 package com.dev_musashi.onetouch.domain.repository
 
 import com.dev_musashi.onetouch.domain.model.History
-import com.dev_musashi.onetouch.domain.model.TitleButton
+import com.dev_musashi.onetouch.domain.model.Title
 import com.dev_musashi.onetouch.domain.model.Table
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
-    fun getAllTables(): Flow<List<Table>>
-    fun getTableIdAndTitle(): Flow<List<TitleButton>>
+    fun getTableIdAndTitle(): Flow<List<Title>>
     suspend fun getTable(id: Int): Table
     suspend fun upsertTable(table: Table)
     suspend fun deleteTable(id: Int)
