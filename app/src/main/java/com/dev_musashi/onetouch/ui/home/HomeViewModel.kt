@@ -53,7 +53,6 @@ class HomeViewModel @Inject constructor(
     init {
         val restoredBtn = savedStateHandle.get<TitleButton>("button")
         if(restoredBtn != null) {
-            println("restoreBtn : $restoredBtn")
             setButton(restoredBtn)
             setTable(restoredBtn)
         }
@@ -178,15 +177,9 @@ class HomeViewModel @Inject constructor(
             }
 
             is HOMEUIEvent.ClickTitleBtn -> {
-
-                println("테이블 클릭: ${event.btn}")
-
                 savedStateHandle["button"] = event.btn
-
                 setButton(event.btn)
-
                 setTable(event.btn)
-
             }
 
             is HOMEUIEvent.SetDate -> {
@@ -212,7 +205,6 @@ class HomeViewModel @Inject constructor(
             is HOMEUIEvent.SetTitle -> {
                 _state.update { it.copy(title = event.title) }
             }
-
 
         }
     }

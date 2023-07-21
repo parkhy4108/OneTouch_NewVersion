@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dev_musashi.onetouch.ui.composable.AddDialog
-import com.dev_musashi.onetouch.ui.composable.ButtonList
+import com.dev_musashi.onetouch.ui.home.composable.ButtonList
 import com.dev_musashi.onetouch.ui.composable.DeleteDialog
 import com.dev_musashi.onetouch.ui.home.composable.Table
 import com.dev_musashi.onetouch.ui.composable.addFocusCleaner

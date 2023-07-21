@@ -46,6 +46,4 @@ fun TableRow(
             fontSize = 12.sp
         )
     }
-
 }
-

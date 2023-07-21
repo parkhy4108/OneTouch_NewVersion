@@ -7,13 +7,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 class RotationSensor(
-    private val context: Context
+    context: Context
 ) {
-    private val _state = MutableStateFlow(-1)
-    val state: StateFlow<Int> = _state
+    val degree = MutableStateFlow(0f)
 
     private val sensorManager = context.getSystemService(SENSOR_SERVICE) as SensorManager
     private val rotationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
@@ -28,14 +26,18 @@ class RotationSensor(
             val pitch = Math.toDegrees(orientationAngles[1].toDouble()).toFloat()
             val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
 
-            if (pitch >= -45 && pitch < 45 && roll >= 45)
-                _state.value = 0
-            else if (pitch < -45 && roll >= -45 && roll < 45)
-                _state.value = 1
-            else if (pitch >= -45 && pitch < 45 && roll < -45)
-                _state.value = 2
-            else if (pitch >= 45 && roll >= -45 && roll < 45)
-                _state.value = 3
+            if (pitch >= -45 && pitch < 45 && roll >= 45) {
+                degree.value = 270f
+            }
+
+            else if (pitch < -45 && roll >= -45 && roll < 45) {
+                degree.value = 0f
+            }
+
+            else if (pitch >= -45 && pitch < 45 && roll < -45) {
+                degree.value = 90f
+            }
+
 
         }
 
@@ -51,4 +53,5 @@ class RotationSensor(
     fun stopListening() {
         sensorManager.unregisterListener(listener)
     }
+
 }

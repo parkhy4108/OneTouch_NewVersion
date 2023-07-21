@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.dev_musashi.onetouch.ui.home.HOMEUIEvent
@@ -64,45 +63,3 @@ fun DeleteDialog(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun DelDialogPreview(){
-    Dialog(onDismissRequest = { }) {
-        Box(
-            modifier = Modifier
-                .width(300.dp)
-                .height(150.dp)
-                .clip(RoundedCornerShape(18.dp))
-                .background(Color.White)
-                .padding(15.dp, 20.dp, 15.dp, 15.dp)
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.SpaceBetween,
-            ) {
-                Text(text = stringResource(id = AppText.DeleteTable), modifier = Modifier.padding(8.dp, 0.dp))
-                Text(text = stringResource(id = AppText.DelDialogText), modifier = Modifier.padding(8.dp, 0.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    TextButton(
-                        onClick = {  },
-                        contentPadding = PaddingValues(0.dp),
-                        content = { Text(text = stringResource(id = AppText.Cancel)) }
-                    )
-                    TextButton(
-                        onClick = {  },
-                        contentPadding = PaddingValues(0.dp),
-                        enabled = true,
-                        content = { Text(text = stringResource(id = AppText.Okay)) }
-                    )
-                }
-            }
-        }
-    }
-}
-
-
-
