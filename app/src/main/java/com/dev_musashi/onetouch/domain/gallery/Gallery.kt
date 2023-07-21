@@ -1,12 +1,13 @@
 package com.dev_musashi.onetouch.domain.gallery
 
-import android.graphics.Bitmap
+import androidx.camera.core.ImageProxy
 import androidx.compose.ui.graphics.ImageBitmap
 
 interface Gallery {
     suspend fun saveImage(
         captureImg: ImageBitmap,
-        pictureImg: Bitmap,
+        pictureImg: ImageProxy,
         onError: (Throwable?) -> Unit
     )
+
 }

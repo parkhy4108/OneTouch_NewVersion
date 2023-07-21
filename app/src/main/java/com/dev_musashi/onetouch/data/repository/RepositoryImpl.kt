@@ -2,7 +2,7 @@ package com.dev_musashi.onetouch.data.repository
 
 import com.dev_musashi.onetouch.data.data_source.Dao
 import com.dev_musashi.onetouch.domain.model.History
-import com.dev_musashi.onetouch.domain.model.TitleButton
+import com.dev_musashi.onetouch.domain.model.Title
 import com.dev_musashi.onetouch.domain.model.Table
 import com.dev_musashi.onetouch.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
@@ -19,11 +19,7 @@ class RepositoryImpl @Inject constructor(
     private val hour: Int = SimpleDateFormat("HH", Locale.getDefault()).format(cal.time).toInt()
     private val min: Int = SimpleDateFormat("mm", Locale.getDefault()).format(cal.time).toInt()
 
-    override fun getAllTables(): Flow<List<Table>> {
-        return dao.getTables()
-    }
-
-    override fun getTableIdAndTitle(): Flow<List<TitleButton>> {
+    override fun getTableIdAndTitle(): Flow<List<Title>> {
         return dao.getTablesIdAndTitle()
     }
 

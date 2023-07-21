@@ -12,8 +12,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
-import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarMessage.Companion.toMessage
+import com.dev_musashi.onetouch.presentation.common.snackBar.SnackBarManager
+import com.dev_musashi.onetouch.presentation.common.snackBar.SnackBarMessage.Companion.toMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch

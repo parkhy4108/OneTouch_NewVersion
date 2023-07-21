@@ -11,7 +11,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
-import com.dev_musashi.onetouch.ui.util.snackBar.SnackBarManager
+import com.dev_musashi.onetouch.presentation.common.snackBar.SnackBarManager
 import dagger.hilt.android.AndroidEntryPoint
 import com.dev_musashi.onetouch.R.string as AppText
 
