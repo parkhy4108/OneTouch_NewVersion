@@ -6,7 +6,9 @@ data class CameraState(
     val location: String = "",
     val date: String = "",
     val note: String = "",
-    val align: String = "TopStart",
-    val orientation: String = "",
+    val align0f: String = "BottomStart",
+    val align90f: String = "TopStart",
+    val align270f: String = "BottomEnd",
+    val degree: Float = 0f,
     val flash: Boolean = false
 )
