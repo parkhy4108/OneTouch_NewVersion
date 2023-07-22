@@ -73,7 +73,7 @@ fun TableRow(
         Icon(
             modifier = Modifier
                 .weight(0.1f)
-                .clickable { },
+                .clickable { onEvent("") },
             painter = painterResource(id = R.drawable.ic_delete),
             contentDescription = null
         )
