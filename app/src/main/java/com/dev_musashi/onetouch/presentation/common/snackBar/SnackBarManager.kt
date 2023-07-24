@@ -17,4 +17,7 @@ object SnackBarManager {
         messages.value = message
     }
 
+    fun initMessage() {
+        messages.value = null
+    }
 }
