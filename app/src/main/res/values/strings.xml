@@ -22,7 +22,7 @@
     <string name="Note">비 고</string>
     <string name="Okay">확인</string>
     <string name="Cancel">취소</string>
-    <string name="CameraPermissionGranted">카메라 권한에 동의하였습니다.</string>
-    <string name="CameraPermissionDenied">카메라 권한을 거부하였습니다. 카메라 사용을 위해 설정에서 권한을 승인하시길 바랍니다. </string>
+    <string name="CameraPermissionDenied">카메라 권한을 거부하였습니다. 올바른 사용을 위해 앱 설정에서 권한을 승인하시길 바랍니다. </string>
+    <string name="StoragePermissionDenied">저장소 권한을 거부하였습니다. 올바른 사용을 위해 앱 설정에서 권한을 승인하시길 바랍니다. </string>
     <string name="SuccessSaveImg">사진 저장이 완료되었습니다.</string>
 </resources>
