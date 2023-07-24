@@ -1,7 +1,9 @@
 package com.dev_musashi.onetouch.presentation.home
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.provider.MediaStore
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -59,7 +61,8 @@ fun HomeScreen(
     val focusRequester by remember { mutableStateOf(FocusRequester()) }
     val lazyListState = rememberLazyListState()
     val context = LocalContext.current
-
+    val intent =
+        Intent(Intent.ACTION_VIEW).apply { this.type = MediaStore.Images.Media.CONTENT_TYPE }
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         item {
             Column(
@@ -84,7 +87,19 @@ fun HomeScreen(
                         fontWeight = FontWeight.Bold
                     )
                     Icon(
-                        modifier = Modifier.clickable { onEvent(HOMEUIEvent.OpenGallery) },
+                        modifier = Modifier.clickable {
+                            if (ContextCompat.checkSelfPermission(
+                                    context,
+                                    Manifest.permission.CAMERA
+                                ) == PackageManager.PERMISSION_GRANTED
+                            ) {
+
+
+                                context.startActivity(intent)
+                            } else {
+                                SnackBarManager.showMessage(AppText.StoragePermissionDenied)
+                            }
+                        },
                         painter = painterResource(id = AppImg.ic_photo),
                         contentDescription = "gallery"
                     )
