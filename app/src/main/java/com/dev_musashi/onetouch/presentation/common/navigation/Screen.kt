@@ -7,6 +7,4 @@ sealed class Screen(val route: String) {
     object CameraScreen : Screen(route = "CAMERA/{$CAMERA_ButtonId}") {
         fun passId(id: Int): String = this.route.replace(oldValue = "{$CAMERA_ButtonId}", newValue = id.toString())
     }
-    object GalleryScreen : Screen(route = "GALLERY")
-
 }
