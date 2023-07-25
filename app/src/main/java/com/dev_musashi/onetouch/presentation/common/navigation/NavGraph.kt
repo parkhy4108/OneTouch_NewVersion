@@ -21,8 +21,4 @@ fun NavGraphBuilder.graph(appState: AppState) {
         val id = it.arguments?.getInt(CAMERA_ButtonId) ?: -1
         CameraScreen(buttonId = id)
     }
-
-    composable(route = Screen.GalleryScreen.route) {
-
-    }
 }
