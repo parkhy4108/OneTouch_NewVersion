@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dev_musashi.onetouch.presentation.theme.Purple40
+import com.dev_musashi.onetouch.presentation.theme.Purple80
 
 @Composable
 fun TitleButton(
@@ -27,8 +27,8 @@ fun TitleButton(
     onLongClick: () -> Unit,
     isSelectedState: Boolean,
 ) {
-    val backgroundColor = if (isSelectedState) Purple40 else Color.LightGray
-    val textColor = if (isSelectedState) Color.White else Color.DarkGray
+    val backgroundColor = if (isSelectedState) Purple80 else Color.LightGray
+    val textColor = if (isSelectedState) Color.Black else Color.DarkGray
     Card(
         modifier = modifier
             .pointerInput(Unit) {
