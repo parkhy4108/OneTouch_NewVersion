@@ -110,7 +110,7 @@ class HomeViewModel @Inject constructor(
                     SnackBarManager.showMessage(AppText.SaveTitle)
 
                 } else {
-                    SnackBarManager.showMessage(AppText.NoSelectedTable)
+                    SnackBarManager.showMessage(AppText.NoSelectedTable1)
                 }
             }
 
@@ -160,7 +160,7 @@ class HomeViewModel @Inject constructor(
                 if(currentBtn != null) {
                     event.open(Screen.CameraScreen.passId(currentBtn.id))
                 } else {
-                    SnackBarManager.showMessage(AppText.NoSelectedTable)
+                    SnackBarManager.showMessage(AppText.NoSelectedTable2)
                 }
             }
 
