@@ -15,8 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -48,8 +48,6 @@ fun CameraScreen(
 ) {
 
     val state by cameraViewModel.state.collectAsState()
-//    val align by cameraViewModel.align
-
     val onEvent = cameraViewModel::onEvent
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -163,7 +161,7 @@ fun CameraScreen(
                 else painterResource(id = AppImg.flash_off)
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    modifier = Modifier.size(51.dp),
+                    modifier = Modifier.size(50.dp),
                     painter = painterResource(id = AppImg.circle),
                     contentDescription = "pictureBtn",
                     tint = Color.White
