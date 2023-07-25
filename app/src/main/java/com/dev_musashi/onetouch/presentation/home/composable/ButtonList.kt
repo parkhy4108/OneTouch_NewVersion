@@ -1,9 +1,9 @@
 package com.dev_musashi.onetouch.presentation.home.composable
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
@@ -27,18 +27,16 @@ fun ButtonList(
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .height(45.dp),
-        contentPadding = PaddingValues(10.dp, 8.dp),
+            .padding(20.dp,0.dp),
         horizontalArrangement = Arrangement.spacedBy(17.dp),
         verticalAlignment = Alignment.CenterVertically,
         state = lazyListState
     ) {
         items(items = list, key = { item: Title -> item.id }) { item ->
-
-            TableButton(
+            TitleButton(
                 modifier = Modifier
                     .width(80.dp)
-                    .height(28.dp),
+                    .height(30.dp),
                 text = item.title,
                 onClick = {
                     onEvent(HOMEUIEvent.ClickTitleBtn(item))
