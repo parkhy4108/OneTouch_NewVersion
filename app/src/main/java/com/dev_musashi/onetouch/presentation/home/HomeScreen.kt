@@ -1,6 +1,7 @@
 package com.dev_musashi.onetouch.presentation.home
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
@@ -59,6 +60,7 @@ import com.dev_musashi.onetouch.presentation.theme.Yellow80
 import com.dev_musashi.onetouch.R.drawable as AppImg
 import com.dev_musashi.onetouch.R.string as AppText
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
     openScreen: (String) -> Unit,
@@ -86,8 +88,7 @@ fun HomeScreen(
                     }
                 },
                 containerColor = if (isSystemInDarkTheme()) Purple40 else Purple80,
-                shape = CircleShape,
-                modifier = Modifier.padding(20.dp)
+                shape = CircleShape
             ) {
                 Icon(
                     painter = painterResource(id = AppImg.ic_camera),
@@ -95,10 +96,10 @@ fun HomeScreen(
                 )
             }
         }
-    ) { paddingValues ->
+    ) { _ ->
         Column(
             modifier = Modifier
-                .padding(paddingValues)
+                .padding()
                 .fillMaxSize()
                 .addFocusCleaner(focusManager)
         ) {

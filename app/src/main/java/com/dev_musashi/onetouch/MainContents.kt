@@ -1,8 +1,12 @@
 package com.dev_musashi.onetouch
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -10,6 +14,7 @@ import com.dev_musashi.onetouch.presentation.common.navigation.Screen
 import com.dev_musashi.onetouch.presentation.common.navigation.graph
 import com.dev_musashi.onetouch.presentation.theme.OneTouchTheme
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainContents() {
     OneTouchTheme {
@@ -28,11 +33,10 @@ fun MainContents() {
                         }
                     )
                 }
-            ) { innerPadding ->
+            ) { _ ->
                 NavHost(
                     navController = appState.navController,
-                    startDestination = Screen.HomeScreen.route,
-                    modifier = Modifier.padding(innerPadding)
+                    startDestination = Screen.HomeScreen.route
                 ) {
                     graph(appState)
                 }
