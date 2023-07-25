@@ -1,8 +1,7 @@
 package com.dev_musashi.onetouch
 
 import android.content.res.Resources
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.Stable
@@ -20,13 +19,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun rememberAppState(
-    scaffoldState: ScaffoldState = rememberScaffoldState(),
+    snackBarHostState: SnackbarHostState = remember{ SnackbarHostState() },
     navController: NavHostController = rememberNavController(),
     resources: Resources = resources(),
     snackBarManager: SnackBarManager = SnackBarManager,
     coroutineScope: CoroutineScope = rememberCoroutineScope()
-) = remember(scaffoldState, navController, snackBarManager, resources, coroutineScope) {
-    AppState(scaffoldState, navController, snackBarManager, resources, coroutineScope)
+) = remember(snackBarHostState, navController, snackBarManager, resources, coroutineScope) {
+    AppState(snackBarHostState, navController, snackBarManager, resources, coroutineScope)
 }
 
 @Composable
@@ -38,7 +37,7 @@ fun resources(): Resources {
 
 @Stable
 class AppState constructor(
-    val scaffoldState: ScaffoldState,
+    val snackBarHostState: SnackbarHostState,
     val navController: NavHostController,
     private val snackBarManager: SnackBarManager,
     private val resources: Resources,
@@ -48,7 +47,7 @@ class AppState constructor(
         coroutineScope.launch {
             snackBarManager.snackMessage.filterNotNull().collect { snackBarMessage ->
                 val text = snackBarMessage.toMessage(resources)
-                scaffoldState.snackbarHostState.showSnackbar(text)
+                snackBarHostState.showSnackbar(text)
                 snackBarManager.initMessage()
             }
         }
