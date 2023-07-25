@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +30,8 @@ fun TableRow(
             modifier = Modifier.weight(0.3f),
             text = stringResource(id = text),
             fontSize = 12.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            color = Color.Black
         )
         Divider(
             modifier = Modifier
@@ -43,7 +44,8 @@ fun TableRow(
                 .weight(0.7f)
                 .padding(5.dp, 0.dp, 0.dp, 0.dp),
             text = value,
-            fontSize = 12.sp
+            fontSize = 12.sp,
+            color = Color.Black
         )
     }
 }
