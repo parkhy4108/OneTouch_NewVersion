@@ -1,4 +1,4 @@
-package com.dev_musashi.onetouch.data.util
+package com.dev_musashi.onetouch.data.bitmap
 
 import android.graphics.Bitmap
 

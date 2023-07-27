@@ -26,6 +26,6 @@ interface Dao {
     @Upsert
     suspend fun upsertHistory(history: History)
 
-    @Query("SELECT * FROM `history` ORDER BY id DESC")
+    @Query("SELECT * FROM `history` ORDER BY id DESC LIMIT 30")
     fun getAllHistory() : Flow<List<History>>
 }

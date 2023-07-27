@@ -27,7 +27,7 @@ fun ButtonList(
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp,0.dp),
+            .padding(5.dp),
         horizontalArrangement = Arrangement.spacedBy(17.dp),
         verticalAlignment = Alignment.CenterVertically,
         state = lazyListState

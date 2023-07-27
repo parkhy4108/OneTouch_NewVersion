@@ -1,7 +1,6 @@
 package com.dev_musashi.onetouch
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -20,7 +19,6 @@ fun MainContents() {
     OneTouchTheme {
         val appState = rememberAppState()
         Surface(
-            modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
             Scaffold(

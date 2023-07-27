@@ -220,7 +220,6 @@ class HomeViewModel @Inject constructor(
     private fun setTable(btn: Title) {
         viewModelScope.launch {
             val table = getTable(btn.id)
-            println("get Table: $table")
             _state.update {
                 it.copy(
                     name = table.name,

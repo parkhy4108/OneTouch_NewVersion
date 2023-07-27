@@ -11,8 +11,7 @@ class SaveImage @Inject constructor(
     suspend operator fun invoke(
         captureImage: ImageBitmap,
         pictureImg: ImageProxy,
-        onError: (Throwable?) -> Unit
-    ) {
-        return gallery.saveImage(captureImage, pictureImg, onError)
+    ) : Throwable? {
+        return gallery.saveImage(captureImage, pictureImg)
     }
 }

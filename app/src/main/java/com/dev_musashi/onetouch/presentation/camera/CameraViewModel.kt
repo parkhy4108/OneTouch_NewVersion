@@ -7,9 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.dev_musashi.onetouch.domain.usecase.GetTable
 import com.dev_musashi.onetouch.domain.usecase.SaveImage
 import com.dev_musashi.onetouch.domain.usecase.UpsertHistory
-import com.dev_musashi.onetouch.sensor.RotationSensor
 import com.dev_musashi.onetouch.presentation.common.snackBar.SnackBarManager
 import com.dev_musashi.onetouch.presentation.common.snackBar.SnackBarMessage.Companion.toSnackBarMessage
+import com.dev_musashi.onetouch.sensor.RotationSensor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -72,9 +72,11 @@ class CameraViewModel @Inject constructor(
 
 
             is CAMERAUIEvent.TakePictureButton -> {
-                viewModelScope.launch(Dispatchers.IO) {
+                viewModelScope.launch {
+                    _state.update { it.copy(doSaving = true) }
                     saveHistory()
-                    saveImage(event.captureImg, event.pictureImg)
+                    saveImg(event.captureImg, event.pictureImg)
+                    _state.update { it.copy(doSaving = false) }
                 }
             }
         }
@@ -107,13 +109,10 @@ class CameraViewModel @Inject constructor(
         }
     }
 
-    private fun saveImage(captureImg: ImageBitmap, pictureImg: ImageProxy) {
-        viewModelScope.launch(Dispatchers.IO) {
-            saveImage(captureImg, pictureImg) { exception ->
-                if (exception != null) SnackBarManager.showMessage(exception.toSnackBarMessage())
-                else SnackBarManager.showMessage(AppText.SuccessSaveImg)
-            }
-        }
+    private suspend fun saveImg(captureImg: ImageBitmap, pictureImg: ImageProxy) {
+        val saveResult = saveImage(captureImg, pictureImg)
+        if(saveResult != null) SnackBarManager.showMessage(saveResult.toSnackBarMessage())
+        else SnackBarManager.showMessage(AppText.SuccessSaveImg)
     }
 
     override fun onCleared() {

@@ -7,7 +7,7 @@ interface Gallery {
     suspend fun saveImage(
         captureImg: ImageBitmap,
         pictureImg: ImageProxy,
-        onError: (Throwable?) -> Unit
-    )
+//        onError: (Throwable?) -> Unit
+    ) : Throwable?
 
 }
