@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -159,7 +160,8 @@ fun CameraScreen(
             val flashImg =
                 if (state.flash) painterResource(id = AppImg.flash_on)
                 else painterResource(id = AppImg.flash_off)
-            IconButton(onClick = { /*TODO*/ }) {
+
+            IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
                 Icon(
                     modifier = Modifier.size(50.dp),
                     painter = painterResource(id = AppImg.circle),
@@ -167,18 +169,36 @@ fun CameraScreen(
                     tint = Color.White
                 )
             }
-            IconButton(onClick = { captureController.capture() }) {
-                Icon(
-                    modifier = Modifier.size(80.dp),
-                    painter = painterResource(id = AppImg.circle),
-                    contentDescription = "pictureBtn",
-                    tint = Color.White
-                )
+
+            IconButton(
+                onClick = { captureController.capture() },
+                modifier = Modifier.size(80.dp),
+                enabled = !state.doSaving
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(modifier = Modifier) {
+                        Icon(
+                            modifier = Modifier.size(80.dp),
+                            painter = painterResource(id = AppImg.circle),
+                            contentDescription = "pictureBtn",
+                            tint = Color.White
+                        )
+                        if (state.doSaving) CircularProgressIndicator(
+                            modifier = Modifier.size(82.dp),
+                            strokeWidth = 3.dp,
+                            color = Color.White
+                        )
+                    }
+                }
+
             }
             IconButton(onClick = {
-                    onEvent(CAMERAUIEvent.FlashClick)
-                    cameraController.enableTorch(!state.flash)
-                }) {
+                onEvent(CAMERAUIEvent.FlashClick)
+                cameraController.enableTorch(!state.flash)
+            }) {
                 Icon(
                     modifier = Modifier
                         .size(48.dp)
