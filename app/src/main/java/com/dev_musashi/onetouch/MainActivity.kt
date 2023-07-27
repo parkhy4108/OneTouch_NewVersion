@@ -15,7 +15,8 @@ import com.dev_musashi.onetouch.R.string as AppText
 class MainActivity : ComponentActivity() {
     private val permissions =  arrayOf(
         Manifest.permission.CAMERA,
-        Manifest.permission.READ_EXTERNAL_STORAGE
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
     )
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,9 @@ class MainActivity : ComponentActivity() {
                 SnackBarManager.showMessage(AppText.CameraPermissionDenied)
             }
             if (permission.key == Manifest.permission.READ_EXTERNAL_STORAGE && !permission.value) {
+                SnackBarManager.showMessage(AppText.StoragePermissionDenied)
+            }
+            if (permission.key == Manifest.permission.WRITE_EXTERNAL_STORAGE && !permission.value) {
                 SnackBarManager.showMessage(AppText.StoragePermissionDenied)
             }
         }
