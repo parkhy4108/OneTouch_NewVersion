@@ -19,6 +19,4 @@ object GalleryModule {
         return GalleryImpl(app)
     }
 
-
-
 }

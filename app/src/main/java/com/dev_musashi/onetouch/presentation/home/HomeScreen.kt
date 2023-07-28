@@ -264,9 +264,6 @@ fun HomeScreen(
 
     }
 
-
-
-
     if (state.isAddingTable) {
         AddDialog(state = state, onEvent = onEvent)
     }

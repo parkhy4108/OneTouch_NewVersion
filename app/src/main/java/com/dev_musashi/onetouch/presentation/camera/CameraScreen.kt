@@ -157,9 +157,6 @@ fun CameraScreen(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            val flashImg =
-                if (state.flash) painterResource(id = AppImg.flash_on)
-                else painterResource(id = AppImg.flash_off)
 
             IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(50.dp)) {
                 Icon(
@@ -195,17 +192,20 @@ fun CameraScreen(
                 }
 
             }
-            IconButton(onClick = {
-                onEvent(CAMERAUIEvent.FlashClick)
-                cameraController.enableTorch(!state.flash)
-            }) {
+            IconButton(
+                onClick = {
+                    if (cameraController.torchState.value == 0) cameraController.enableTorch(true)
+                    else cameraController.enableTorch(false)
+                    onEvent(CAMERAUIEvent.FlashClick)
+                }) {
                 Icon(
                     modifier = Modifier
                         .size(48.dp)
                         .border(1.dp, Color.White, CircleShape)
                         .padding(3.dp),
                     tint = Color.White,
-                    painter = flashImg,
+                    painter = if (state.flash) painterResource(id = AppImg.flash_on)
+                    else painterResource(id = AppImg.flash_off),
                     contentDescription = "flashImg"
                 )
             }

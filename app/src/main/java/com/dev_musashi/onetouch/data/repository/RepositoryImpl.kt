@@ -47,7 +47,7 @@ class RepositoryImpl @Inject constructor(
         return dao.upsertHistory(history)
     }
 
-    override suspend fun getAllHistory(): Flow<List<History>> {
+    override fun getAllHistory(): Flow<List<History>> {
         return dao.getAllHistory()
     }
 }

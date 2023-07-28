@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
     fun getTableIdAndTitle(): Flow<List<Title>>
+    fun getAllHistory(): Flow<List<History>>
     suspend fun getTable(id: Int): Table
     suspend fun upsertTable(table: Table)
     suspend fun deleteTable(id: Int)
@@ -17,5 +18,5 @@ interface Repository {
         date: String,
         note: String
     )
-    suspend fun getAllHistory(): Flow<List<History>>
+
 }

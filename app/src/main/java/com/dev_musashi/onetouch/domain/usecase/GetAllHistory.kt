@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetAllHistory @Inject constructor(
     private val repository: Repository
 ) {
-    suspend operator fun invoke(): Flow<List<History>> {
+    operator fun invoke(): Flow<List<History>> {
         return repository.getAllHistory()
     }
 }
