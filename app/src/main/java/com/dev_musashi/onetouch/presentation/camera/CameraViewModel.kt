@@ -66,11 +66,6 @@ class CameraViewModel @Inject constructor(
 
             }
 
-            CAMERAUIEvent.FlashClick -> {
-                _state.update { it.copy(flash = !state.value.flash) }
-            }
-
-
             is CAMERAUIEvent.TakePictureButton -> {
                 viewModelScope.launch {
                     _state.update { it.copy(doSaving = true) }

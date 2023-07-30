@@ -10,6 +10,5 @@ data class CameraState(
     val align90f: String = "TopStart",
     val align270f: String = "BottomEnd",
     val degree: Float = 0f,
-    val flash: Boolean = false,
     val doSaving: Boolean = false
 )

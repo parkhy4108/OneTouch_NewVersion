@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,7 +56,7 @@ fun CameraScreen(
     val cameraController = remember { LifecycleCameraController(context) }
     val captureController = rememberCaptureController()
     val mainExecutor = ContextCompat.getMainExecutor(context)
-
+    val hasFlash = remember{ mutableStateOf(false) }
     LaunchedEffect(Unit) {
         cameraViewModel.init(buttonId)
     }
@@ -196,7 +197,7 @@ fun CameraScreen(
                 onClick = {
                     if (cameraController.torchState.value == 0) cameraController.enableTorch(true)
                     else cameraController.enableTorch(false)
-                    onEvent(CAMERAUIEvent.FlashClick)
+                    hasFlash.value = !hasFlash.value
                 }) {
                 Icon(
                     modifier = Modifier
@@ -204,7 +205,7 @@ fun CameraScreen(
                         .border(1.dp, Color.White, CircleShape)
                         .padding(3.dp),
                     tint = Color.White,
-                    painter = if (state.flash) painterResource(id = AppImg.flash_on)
+                    painter = if (hasFlash.value) painterResource(id = AppImg.flash_on)
                     else painterResource(id = AppImg.flash_off),
                     contentDescription = "flashImg"
                 )
