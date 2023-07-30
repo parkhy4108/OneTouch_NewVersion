@@ -34,12 +34,8 @@ class GalleryImpl @Inject constructor(
             val resource = context.resources
             val contentResolver = context.contentResolver
             val rotatedPicture = rotateBitmap(pictureImg.toBitmap(), 90f)
-            val resizedCapture = resizeBitmap(
-                captureImg.asAndroidBitmap(),
-                rotatedPicture.width,
-                rotatedPicture.height
-            )
-            val combinedBitmap = combineBitmap(picture = rotatedPicture, capture = resizedCapture)
+            val resizedCapture = resizeBitmap(captureImg.asAndroidBitmap(), rotatedPicture.width, rotatedPicture.height)
+            val combinedBitmap = combineBitmap(picture1 = rotatedPicture, picture2 = resizedCapture)
             val fileName = System.currentTimeMillis().toString() + ".jpeg"
             val contentValues = ContentValues().apply {
                 put(MediaStore.Images.Media.DISPLAY_NAME, fileName)

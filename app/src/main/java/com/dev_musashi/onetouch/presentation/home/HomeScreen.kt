@@ -93,7 +93,7 @@ fun HomeScreen(
             .fillMaxSize()
             .verticalScroll(scrollState)
             .addFocusCleaner(focusManager)
-            .padding(20.dp),
+            .padding(20.dp,10.dp,20.dp,20.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         //One Touch Title & Gallery Button
@@ -189,7 +189,8 @@ fun HomeScreen(
                         onEvent(HOMEUIEvent.ShowAddDialog)
                     },
                     painter = painterResource(id = AppImg.ic_add),
-                    contentDescription = "add"
+                    contentDescription = "add",
+                    tint = if(isSystemInDarkTheme()) Color.White else Color.Black
                 )
             }
         }

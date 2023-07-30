@@ -58,7 +58,7 @@ fun OneTouchTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = if(darkTheme) DarkBackground.toArgb() else LightBackground.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
