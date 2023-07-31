@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -37,6 +38,7 @@ import com.dev_musashi.onetouch.presentation.home.HOMEUIEvent
 import com.dev_musashi.onetouch.presentation.home.HomeState
 import com.dev_musashi.onetouch.R.string as AppText
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddDialog(
     state: HomeState,
@@ -77,7 +79,7 @@ fun AddDialog(
                     singleLine = true,
                     textStyle = TextStyle.Default.copy(fontSize = 18.sp),
                     placeholder = { Text(text = stringResource(id = AppText.TitlePlaceHolder)) },
-                    colors = TextFieldDefaults.colors(unfocusedContainerColor = textFieldColor, focusedContainerColor = textFieldColor),
+                    colors = TextFieldDefaults.textFieldColors(containerColor = textFieldColor) ,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                 )
                 Row(

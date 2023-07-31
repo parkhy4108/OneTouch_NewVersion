@@ -94,7 +94,7 @@ fun CameraScreen(
                 }
             }
         ) {
-            Box(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier.weight(0.8f)) {
                 CameraView(
                     lifecycleOwner = lifecycleOwner,
                     cameraController = cameraController
