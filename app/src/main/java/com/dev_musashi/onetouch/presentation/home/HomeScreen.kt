@@ -170,7 +170,7 @@ fun HomeScreen(
             Text(
                 text = stringResource(id = AppText.BoardTitle),
                 style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.SemiBold
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
