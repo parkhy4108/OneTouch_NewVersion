@@ -2,8 +2,8 @@ package com.dev_musashi.onetouch.data.repository
 
 import com.dev_musashi.onetouch.data.data_source.Dao
 import com.dev_musashi.onetouch.domain.model.History
-import com.dev_musashi.onetouch.domain.model.Title
 import com.dev_musashi.onetouch.domain.model.Table
+import com.dev_musashi.onetouch.domain.model.Title
 import com.dev_musashi.onetouch.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import java.text.SimpleDateFormat
@@ -14,10 +14,6 @@ import javax.inject.Inject
 class RepositoryImpl @Inject constructor(
     private val dao: Dao
 ) : Repository {
-
-    private val cal: Calendar = Calendar.getInstance()
-    private val hour: Int = SimpleDateFormat("HH", Locale.getDefault()).format(cal.time).toInt()
-    private val min: Int = SimpleDateFormat("mm", Locale.getDefault()).format(cal.time).toInt()
 
     override fun getTableIdAndTitle(): Flow<List<Title>> {
         return dao.getTablesIdAndTitle()
@@ -42,7 +38,10 @@ class RepositoryImpl @Inject constructor(
         date: String,
         note: String
     ) {
-        val str = "$name / $species / $location / $date / $note / $hour:$min"
+        val cal: Calendar = Calendar.getInstance()
+        val hour = SimpleDateFormat("HH", Locale("ko", "KR")).format(cal.time)
+        val min = SimpleDateFormat("mm", Locale("ko", "KR")).format(cal.time)
+        val str = "$name / $species / $location / $date / $note / $hour : $min"
         val history = History(str = str)
         return dao.upsertHistory(history)
     }

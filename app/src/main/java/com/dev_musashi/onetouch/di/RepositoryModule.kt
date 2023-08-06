@@ -18,7 +18,7 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideNoteDatabase(app: Application): DataBase {
+    fun provideDatabase(app: Application): DataBase {
         return Room.databaseBuilder(
             app,
             DataBase::class.java,
@@ -31,7 +31,5 @@ object RepositoryModule {
     fun provideRepository(dataBase: DataBase) : Repository {
         return RepositoryImpl(dataBase.dao)
     }
-
-
 
 }
