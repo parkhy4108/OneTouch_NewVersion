@@ -10,6 +10,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
@@ -57,8 +58,10 @@ fun OneTouchTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = if(darkTheme) DarkBackground.toArgb() else LightBackground.toArgb()
+            window.statusBarColor = if(!darkTheme) Color.Transparent.toArgb() else darkColorScheme().background.toArgb()
+            window.navigationBarColor = if(!darkTheme) Color.Transparent.toArgb() else darkColorScheme().background.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
         }
     }
 

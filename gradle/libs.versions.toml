@@ -7,7 +7,7 @@ kotlin-parcelize = "1.8.10"
 core-ktx = "1.10.1"
 lifecycle-runtime-ktx = "2.6.1"
 activity-compose = "1.7.2"
-compose-bom = "2023.03.00"
+compose-bom = "2023.06.01"
 compose-runtime = "1.4.3"
 navigation-compose = "2.6.0"
 hilt = "2.45"
@@ -21,7 +21,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 test-core = "1.5.0"
 mockk = "1.13.5"
-
+material3-window-size = "1.1.1"
 [libraries]
 # = {group = "", name = "", version.ref = ""}
 androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.10.1" }
@@ -33,7 +33,7 @@ ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
-material3-window-size = {group = "androidx.compose.material3", name = "material3-window-size-class"}
+material3-window-size = {group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3-window-size"}
 camera-core = {group = "androidx.camera", name = "camera-core", version.ref = "camera"}
 camera-camera2 = {group = "androidx.camera", name = "camera-camera2", version.ref = "camera"}
 camera-view = {group = "androidx.camera", name = "camera-view", version.ref = "camera"}
