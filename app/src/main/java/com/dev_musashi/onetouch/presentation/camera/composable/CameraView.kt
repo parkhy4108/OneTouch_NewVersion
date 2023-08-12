@@ -20,7 +20,7 @@ fun CameraView(
     AndroidView(
         modifier = modifier.fillMaxSize(),
         factory = { context ->
-            PreviewView(context).apply {
+             PreviewView(context).apply {
                 layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 setBackgroundColor(Color.BLACK)
                 scaleType = PreviewView.ScaleType.FILL_START

@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,9 +31,10 @@ import com.dev_musashi.onetouch.R
 fun TableRow(
     modifier: Modifier,
     focusManager: FocusManager,
-    text: String,
-    value: String,
-    onEvent: (String) -> Unit
+    value1: String,
+    value2: String,
+    onEvent1: (String) -> Unit,
+    onEvent2: (String) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -43,21 +42,43 @@ fun TableRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = text,
+//        Text(
+//            text = text,
+//            modifier = Modifier
+//                .weight(0.2f)
+//                .height(40.dp)
+//                .wrapContentHeight(Alignment.CenterVertically),
+//            textAlign = TextAlign.Center,
+//            color = Color.Black
+//        )
+        BasicTextField(
             modifier = Modifier
                 .weight(0.2f)
-                .height(40.dp)
-                .wrapContentHeight(Alignment.CenterVertically),
-            textAlign = TextAlign.Center,
-            color = Color.Black
+                .height(40.dp),
+            value = value1,
+            onValueChange = { onEvent1(it) },
+            textStyle = TextStyle.Default.copy(fontSize = 12.sp, textAlign = TextAlign.Center),
+            decorationBox = { innerTextField ->
+                Row(
+                    modifier = Modifier
+                        .padding(4.dp, 0.dp, 0.dp, 0.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    innerTextField()
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
         )
         BasicTextField(
             modifier = Modifier
                 .weight(0.7f)
                 .height(40.dp),
-            value = value,
-            onValueChange = { onEvent(it) },
+            value = value2,
+            onValueChange = { onEvent2(it) },
             textStyle = TextStyle.Default.copy(fontSize = 12.sp),
             decorationBox = { innerTextField ->
                 Row(
@@ -78,7 +99,7 @@ fun TableRow(
         Icon(
             modifier = Modifier
                 .weight(0.1f)
-                .clickable { onEvent("") },
+                .clickable { onEvent2("") },
             painter = painterResource(id = R.drawable.ic_cancel),
             contentDescription = null,
             tint = if (isSystemInDarkTheme()) Color.DarkGray else Color.LightGray

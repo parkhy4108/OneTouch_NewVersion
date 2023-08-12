@@ -6,7 +6,11 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
 
 class RotationSensor(
     context: Context
@@ -22,7 +26,6 @@ class RotationSensor(
         override fun onSensorChanged(event: SensorEvent) {
             SensorManager.getRotationMatrixFromVector(rotationMatrix, event.values)
             SensorManager.getOrientation(rotationMatrix, orientationAngles)
-
             val pitch = Math.toDegrees(orientationAngles[1].toDouble()).toFloat()
             val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
 

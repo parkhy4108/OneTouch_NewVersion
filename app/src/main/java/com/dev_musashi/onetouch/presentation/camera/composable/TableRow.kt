@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun TableRow(
     modifier: Modifier,
-    text: Int,
-    value: String
+    titleValue: String,
+    contentValue: String
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -28,7 +28,7 @@ fun TableRow(
     ) {
         Text(
             modifier = Modifier.weight(0.3f),
-            text = stringResource(id = text),
+            text = titleValue,
             fontSize = 12.sp,
             textAlign = TextAlign.Center,
             color = Color.Black
@@ -43,7 +43,7 @@ fun TableRow(
             modifier = Modifier
                 .weight(0.7f)
                 .padding(5.dp, 0.dp, 0.dp, 0.dp),
-            text = value,
+            text = contentValue,
             fontSize = 12.sp,
             color = Color.Black
         )

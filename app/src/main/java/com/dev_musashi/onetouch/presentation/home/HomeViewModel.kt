@@ -90,17 +90,25 @@ class HomeViewModel @Inject constructor(
                     val id = currentTableBtn.id
                     val title = currentTableBtn.title
                     val name = state.value.name
+                    val nameContent = state.value.nameContent
                     val species = state.value.species
+                    val speciesContent = state.value.speciesContent
                     val location = state.value.location
+                    val locationContent = state.value.locationContent
                     val date = state.value.date
+                    val dateContent = state.value.dateContent
                     val note = state.value.note
+                    val noteContent = state.value.noteContent
                     val timestamp = currentTableBtn.timestamp
 
                     val table = Table(
                         id = id, title = title,
-                        name = name, species = species,
-                        location = location, date = date,
-                        note = note, timestamp = timestamp
+                        name = name, nameContent = nameContent,
+                        species = species, speciesContent = speciesContent,
+                        location = location, locationContent = locationContent,
+                        date = date, dateContent = dateContent,
+                        note = note, noteContent = noteContent,
+                        timestamp = timestamp
                     )
 
                     viewModelScope.launch {
@@ -182,24 +190,44 @@ class HomeViewModel @Inject constructor(
                 setTable(event.btn)
             }
 
-            is HOMEUIEvent.SetDate -> {
-                _state.update { it.copy(date = event.date) }
+            is HOMEUIEvent.SetName -> {
+                _state.update { it.copy(name = event.name) }
+            }
+
+            is HOMEUIEvent.SetNameContent -> {
+                _state.update { it.copy(nameContent = event.nameContent) }
+            }
+
+            is HOMEUIEvent.SetSpecies -> {
+                _state.update { it.copy(species = event.species) }
+            }
+
+            is HOMEUIEvent.SetSpeciesContent -> {
+                _state.update { it.copy(speciesContent = event.speciesContent) }
             }
 
             is HOMEUIEvent.SetLocation -> {
                 _state.update { it.copy(location = event.location) }
             }
 
-            is HOMEUIEvent.SetName -> {
-                _state.update { it.copy(name = event.name) }
+            is HOMEUIEvent.SetLocationContent -> {
+                _state.update { it.copy(locationContent = event.locationContent) }
+            }
+
+            is HOMEUIEvent.SetDate -> {
+                _state.update { it.copy(date = event.date) }
+            }
+
+            is HOMEUIEvent.SetDateContent -> {
+                _state.update { it.copy(dateContent = event.dateContent) }
             }
 
             is HOMEUIEvent.SetNote -> {
                 _state.update { it.copy(note = event.note) }
             }
 
-            is HOMEUIEvent.SetSpecies -> {
-                _state.update { it.copy(species = event.species) }
+            is HOMEUIEvent.SetNoteContent -> {
+                _state.update { it.copy(noteContent = event.noteContent) }
             }
 
             is HOMEUIEvent.SetTitle -> {
@@ -223,10 +251,15 @@ class HomeViewModel @Inject constructor(
             _state.update {
                 it.copy(
                     name = table.name,
+                    nameContent = table.nameContent,
                     species = table.species,
+                    speciesContent = table.speciesContent,
                     location = table.location,
+                    locationContent = table.locationContent,
                     date = table.date,
+                    dateContent = table.dateContent,
                     note = table.note,
+                    noteContent = table.noteContent,
                 )
             }
         }
