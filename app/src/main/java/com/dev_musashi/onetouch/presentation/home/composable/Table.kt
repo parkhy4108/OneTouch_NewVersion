@@ -15,7 +15,7 @@ import com.dev_musashi.onetouch.R.string as AppText
 
 @Composable
 fun Table(
-    modifier : Modifier,
+    modifier: Modifier,
     focusManager: FocusManager,
     state: HomeState,
     onEvent: (HOMEUIEvent) -> Unit
@@ -28,41 +28,46 @@ fun Table(
         TableRow(
             modifier = Modifier.weight(1f),
             focusManager = focusManager,
-            text = stringResource(id = AppText.Name),
-            value = state.name,
-            onEvent = { onEvent(HOMEUIEvent.SetName(it)) },
+            value1 = state.name,
+            value2 = state.nameContent,
+            onEvent1 = { onEvent(HOMEUIEvent.SetName(it)) },
+            onEvent2 = { onEvent(HOMEUIEvent.SetNameContent(it)) },
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             modifier = Modifier.weight(1f),
             focusManager = focusManager,
-            text = stringResource(id = AppText.Species),
-            value = state.species,
-            onEvent = { onEvent(HOMEUIEvent.SetSpecies(it)) },
+            value1 = state.species,
+            value2 = state.speciesContent,
+            onEvent1 = { onEvent(HOMEUIEvent.SetSpecies(it)) },
+            onEvent2 = { onEvent(HOMEUIEvent.SetSpeciesContent(it)) },
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             modifier = Modifier.weight(1f),
             focusManager = focusManager,
-            text = stringResource(id = AppText.Location),
-            value = state.location,
-            onEvent = { onEvent(HOMEUIEvent.SetLocation(it)) },
+            value1 = state.location,
+            value2 = state.locationContent,
+            onEvent1 = { onEvent(HOMEUIEvent.SetLocation(it)) },
+            onEvent2 = { onEvent(HOMEUIEvent.SetLocationContent(it)) },
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             modifier = Modifier.weight(1f),
             focusManager = focusManager,
-            text = stringResource(id = AppText.Date),
-            value = state.date,
-            onEvent = { onEvent(HOMEUIEvent.SetDate(it)) },
+            value1 = state.date,
+            value2 = state.dateContent,
+            onEvent1 = { onEvent(HOMEUIEvent.SetDate(it)) },
+            onEvent2 = { onEvent(HOMEUIEvent.SetDateContent(it)) },
         )
         Divider(modifier = Modifier.fillMaxWidth())
         TableRow(
             modifier = Modifier.weight(1f),
             focusManager = focusManager,
-            text = stringResource(id = AppText.Note),
-            value = state.note,
-            onEvent = { onEvent(HOMEUIEvent.SetNote(it)) },
+            value1 = state.note,
+            value2 = state.noteContent,
+            onEvent1 = { onEvent(HOMEUIEvent.SetNote(it)) },
+            onEvent2 = { onEvent(HOMEUIEvent.SetNoteContent(it)) },
         )
     }
 

@@ -18,6 +18,11 @@ sealed interface HOMEUIEvent {
     data class SetLocation(val location: String): HOMEUIEvent
     data class SetDate(val date: String): HOMEUIEvent
     data class SetNote(val note: String): HOMEUIEvent
+    data class SetNameContent(val nameContent: String): HOMEUIEvent
+    data class SetSpeciesContent(val speciesContent: String): HOMEUIEvent
+    data class SetLocationContent(val locationContent: String): HOMEUIEvent
+    data class SetDateContent(val dateContent: String): HOMEUIEvent
+    data class SetNoteContent(val noteContent: String): HOMEUIEvent
     data class ClickTitleBtn(val btn: Title): HOMEUIEvent
 
 }

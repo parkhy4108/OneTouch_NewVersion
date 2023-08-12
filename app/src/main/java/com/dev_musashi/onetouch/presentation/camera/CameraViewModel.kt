@@ -82,11 +82,11 @@ class CameraViewModel @Inject constructor(
             val table = getTable(id)
             _state.update {
                 it.copy(
-                    name = table.name,
-                    species = table.species,
-                    location = table.location,
-                    date = table.date,
-                    note = table.note
+                    name = table.name, nameContent = table.nameContent,
+                    species = table.species, speciesContent = table.speciesContent,
+                    location = table.location, locationContent = table.locationContent,
+                    date = table.date, dateContent = table.dateContent,
+                    note = table.note, noteContent = table.noteContent
                 )
             }
         }

@@ -40,14 +40,14 @@ fun Board(
             .background(Color.White),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
-        TableRow(modifier = Modifier.weight(0.2f), text = R.string.Name, value = state.name)
+        TableRow(modifier = Modifier.weight(0.2f), titleValue = state.name, contentValue = state.nameContent)
         Divider(color = Color.Black, thickness = 0.5.dp)
-        TableRow(modifier = Modifier.weight(0.2f), text = R.string.Species, value = state.species)
+        TableRow(modifier = Modifier.weight(0.2f), titleValue = state.species, contentValue = state.speciesContent)
         Divider(color = Color.Black, thickness = 0.5.dp)
-        TableRow(modifier = Modifier.weight(0.2f), text = R.string.Location, value = state.location)
+        TableRow(modifier = Modifier.weight(0.2f), titleValue = state.location, contentValue = state.locationContent)
         Divider(color = Color.Black, thickness = 0.5.dp)
-        TableRow(modifier = Modifier.weight(0.2f), text = R.string.Date, value = state.date)
+        TableRow(modifier = Modifier.weight(0.2f), titleValue = state.date, contentValue = state.dateContent)
         Divider(color = Color.Black, thickness = 0.5.dp)
-        TableRow(modifier = Modifier.weight(0.2f), text = R.string.Note, value = state.note)
+        TableRow(modifier = Modifier.weight(0.2f), titleValue = state.note, contentValue = state.noteContent)
     }
 }

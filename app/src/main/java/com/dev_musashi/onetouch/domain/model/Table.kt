@@ -9,9 +9,15 @@ data class Table(
     val id: Int = 0,
     val timestamp: Long,
     val title: String,
-    val name: String = "",
-    val species: String = "",
-    val location: String = "",
-    val date: String = "",
-    val note: String = "",
+    val name: String = "공사명",
+    val species: String = "공종",
+    val location: String = "위치",
+    val date: String = "날짜",
+    val note: String = "비고",
+    val nameContent: String = "",
+    val speciesContent: String = "",
+    val locationContent: String = "",
+    val dateContent: String = "",
+    val noteContent: String = ""
+
 )
