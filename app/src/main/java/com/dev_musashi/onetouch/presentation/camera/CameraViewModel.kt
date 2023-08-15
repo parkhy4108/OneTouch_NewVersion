@@ -95,11 +95,11 @@ class CameraViewModel @Inject constructor(
     private fun saveHistory() {
         viewModelScope.launch(Dispatchers.IO) {
             upsertHistory(
-                name = state.value.name,
-                species = state.value.species,
-                location = state.value.location,
-                date = state.value.date,
-                note = state.value.note
+                name = state.value.nameContent,
+                species = state.value.speciesContent,
+                location = state.value.locationContent,
+                date = state.value.dateContent,
+                note = state.value.noteContent
             )
         }
     }
