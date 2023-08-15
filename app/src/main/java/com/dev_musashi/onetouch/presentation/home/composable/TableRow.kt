@@ -1,6 +1,5 @@
 package com.dev_musashi.onetouch.presentation.home.composable
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dev_musashi.onetouch.R
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TableRow(
     modifier: Modifier,
@@ -42,15 +40,6 @@ fun TableRow(
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-//        Text(
-//            text = text,
-//            modifier = Modifier
-//                .weight(0.2f)
-//                .height(40.dp)
-//                .wrapContentHeight(Alignment.CenterVertically),
-//            textAlign = TextAlign.Center,
-//            color = Color.Black
-//        )
         BasicTextField(
             modifier = Modifier
                 .weight(0.2f)
